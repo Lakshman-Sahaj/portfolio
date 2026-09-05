@@ -4,13 +4,11 @@
   --muted: #989c98;
   --line: #282d2b;
   --accent: #d6ee47;
-  --max: 1520px;
+  --max: 1460px;
 }
 
 
-/* =========================================
-   RESET
-========================================= */
+/* RESET */
 
 * {
   box-sizing: border-box;
@@ -40,9 +38,7 @@ body {
 }
 
 
-/* =========================================
-   STARFIELD
-========================================= */
+/* STARFIELD */
 
 body::before {
   content: "";
@@ -56,21 +52,21 @@ body::before {
   z-index: -1;
 
   background:
-    radial-gradient(circle at 6% 12%, rgba(255,255,255,.75) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 13% 42%, rgba(255,255,255,.35) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 19% 73%, rgba(255,255,255,.55) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 27% 18%, rgba(255,255,255,.30) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 34% 58%, rgba(255,255,255,.50) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 41% 87%, rgba(255,255,255,.28) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 49% 29%, rgba(255,255,255,.60) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 56% 64%, rgba(255,255,255,.32) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 63% 14%, rgba(255,255,255,.42) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 68% 78%, rgba(255,255,255,.50) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 74% 37%, rgba(255,255,255,.30) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 81% 18%, rgba(255,255,255,.65) 0 1px, transparent 1.4px),
-    radial-gradient(circle at 86% 55%, rgba(255,255,255,.36) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 91% 83%, rgba(255,255,255,.55) 0 1px, transparent 1.3px),
-    radial-gradient(circle at 96% 31%, rgba(255,255,255,.28) 0 1px, transparent 1.3px),
+    radial-gradient(circle at 6% 12%, rgba(255,255,255,.68) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 13% 42%, rgba(255,255,255,.30) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 19% 73%, rgba(255,255,255,.48) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 27% 18%, rgba(255,255,255,.26) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 34% 58%, rgba(255,255,255,.44) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 41% 87%, rgba(255,255,255,.23) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 49% 29%, rgba(255,255,255,.52) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 56% 64%, rgba(255,255,255,.28) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 63% 14%, rgba(255,255,255,.36) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 68% 78%, rgba(255,255,255,.44) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 74% 37%, rgba(255,255,255,.25) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 81% 18%, rgba(255,255,255,.58) 0 1px, transparent 1.35px),
+    radial-gradient(circle at 86% 55%, rgba(255,255,255,.30) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 91% 83%, rgba(255,255,255,.48) 0 1px, transparent 1.25px),
+    radial-gradient(circle at 96% 31%, rgba(255,255,255,.23) 0 1px, transparent 1.25px),
     var(--bg);
 }
 
@@ -92,9 +88,7 @@ button {
 }
 
 
-/* =========================================
-   MAIN SITE
-========================================= */
+/* MAIN SITE */
 
 .site-shell {
   position: relative;
@@ -102,8 +96,6 @@ button {
   z-index: 1;
 
   width: 100%;
-
-  background: transparent;
 
   transition:
     transform
@@ -128,12 +120,13 @@ button {
 
   z-index: 20;
 
-  width: min(
-    calc(100% - 72px),
-    var(--max)
-  );
+  width:
+    min(
+      calc(100% - 64px),
+      var(--max)
+    );
 
-  height: 78px;
+  height: 64px;
 
   display: flex;
 
@@ -142,57 +135,51 @@ button {
 
 
 .monogram {
-  font-size: 12px;
+  font-size: 11px;
 
   font-weight: 700;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
 main {
-  width: min(
-    calc(100% - 72px),
-    var(--max)
-  );
+  width:
+    min(
+      calc(100% - 64px),
+      var(--max)
+    );
 
   margin: 0 auto;
 }
 
 
-/* =========================================
-   HERO
-========================================= */
+/* HERO */
 
 .hero {
-  min-height: 100vh;
+  min-height: 82vh;
 
   position: relative;
 
   display: grid;
 
   grid-template-columns:
-    minmax(0, 1.7fr)
-    minmax(310px, 0.78fr);
+    minmax(0, 1.72fr)
+    minmax(280px, .68fr);
 
   gap:
     clamp(
-      40px,
-      7vw,
-      120px
+      36px,
+      5vw,
+      78px
     );
 
   align-items: center;
 
   padding:
-    115px
+    88px
     0
-    82px;
-}
-
-
-.hero-copy {
-  align-self: center;
+    58px;
 }
 
 
@@ -201,16 +188,16 @@ main {
     0
     0
     clamp(
-      60px,
-      9vh,
-      125px
+      34px,
+      5vh,
+      60px
     );
 
-  color: var(--muted);
+  color: #a9adaa;
 
-  font-size: 12px;
+  font-size: 11px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
@@ -219,16 +206,16 @@ h1 {
 
   font-size:
     clamp(
-      76px,
-      10.6vw,
-      175px
+      58px,
+      8vw,
+      125px
     );
 
   font-weight: 500;
 
-  line-height: 0.79;
+  line-height: .83;
 
-  letter-spacing: -0.075em;
+  letter-spacing: -.068em;
 }
 
 
@@ -243,40 +230,38 @@ h1 .accent {
 
 
 .hero-line {
-  max-width: 720px;
+  max-width: 620px;
 
   margin:
     clamp(
-      70px,
-      10vh,
-      130px
+      34px,
+      5vh,
+      62px
     )
     0
     0;
 
-  padding-top: 24px;
+  padding-top: 17px;
 
   border-top:
     1px
     solid
-    var(--line);
+    rgba(40,45,43,.78);
 
   font-size:
     clamp(
-      20px,
-      2vw,
-      31px
+      17px,
+      1.4vw,
+      23px
     );
 
-  line-height: 1.2;
+  line-height: 1.24;
 
-  letter-spacing: -0.03em;
+  letter-spacing: -.025em;
 }
 
 
-/* =========================================
-   HERO NAVIGATION
-========================================= */
+/* HERO NAV */
 
 .hero-nav {
   display: grid;
@@ -287,21 +272,27 @@ h1 .accent {
 
   gap:
     clamp(
-      45px,
-      5vw,
-      78px
+      28px,
+      3.2vw,
+      48px
     );
 
-  align-items: stretch;
+  min-height: 330px;
 
-  min-height: 500px;
+  align-items: center;
 }
 
 
 .hero-nav-line {
-  background: #e8e8e3;
+  width: 1px;
 
-  opacity: 0.9;
+  height: 72%;
+
+  align-self: center;
+
+  background: #d8d8d2;
+
+  opacity: .55;
 }
 
 
@@ -310,25 +301,23 @@ h1 .accent {
 
   flex-direction: column;
 
-  justify-content: center;
-
-  gap: 28px;
+  gap: 14px;
 }
 
 
 .hero-nav-buttons a {
-  min-height: 105px;
+  min-height: 74px;
 
   border:
-    2px
+    1.5px
     solid
     var(--text);
 
-  border-radius: 28px;
+  border-radius: 18px;
 
   padding:
     0
-    32px;
+    24px;
 
   display: flex;
 
@@ -338,17 +327,17 @@ h1 .accent {
 
   font-size:
     clamp(
-      26px,
-      2.5vw,
-      40px
+      20px,
+      1.7vw,
+      28px
     );
 
-  letter-spacing: -0.035em;
+  letter-spacing: -.03em;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
+    background .2s ease,
+    color .2s ease,
+    transform .2s ease;
 }
 
 
@@ -357,14 +346,15 @@ h1 .accent {
 
   color: var(--bg);
 
-  transform: translateX(5px);
+  transform:
+    translateX(4px);
 }
 
 
 .arrow {
-  font-size: 0.68em;
+  font-size: .68em;
 
-  opacity: 0.72;
+  opacity: .72;
 }
 
 
@@ -373,41 +363,39 @@ h1 .accent {
 
   right: 0;
 
-  bottom: 35px;
+  bottom: 18px;
 
   display: flex;
 
-  gap: 13px;
+  gap: 11px;
 
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.15em;
+  letter-spacing: .15em;
 }
 
 
-/* =========================================
-   PROJECT LIST
-========================================= */
+/* PROJECT LIST */
 
 .projects,
 .bio {
   padding:
-    135px
+    92px
     0;
 }
 
 
 .section-label {
+  padding-bottom: 13px;
+
+  margin-bottom: 8px;
+
   border-bottom:
     1px
     solid
     var(--line);
-
-  padding-bottom: 16px;
-
-  margin-bottom: 10px;
 
   display: flex;
 
@@ -415,9 +403,9 @@ h1 .accent {
 
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
@@ -432,7 +420,7 @@ h1 .accent {
 .project-row {
   width: 100%;
 
-  min-height: 118px;
+  min-height: 90px;
 
   padding: 0;
 
@@ -454,19 +442,19 @@ h1 .accent {
   display: grid;
 
   grid-template-columns:
-    90px
+    68px
     1fr
-    180px
-    34px;
+    170px
+    28px;
 
   align-items: center;
 
-  gap: 24px;
+  gap: 20px;
 
   transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    padding 0.2s ease;
+    background .2s ease,
+    color .2s ease,
+    padding .2s ease;
 }
 
 
@@ -479,41 +467,41 @@ h1 .accent {
 .project-type {
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.13em;
+  letter-spacing: .13em;
 }
 
 
 .project-title {
   font-size:
     clamp(
-      28px,
-      3.6vw,
-      58px
+      24px,
+      2.8vw,
+      44px
     );
 
-  letter-spacing: -0.045em;
+  letter-spacing: -.04em;
 }
 
 
 .project-arrow {
-  font-size: 22px;
+  font-size: 18px;
 
   text-align: right;
 
-  opacity: 0.5;
+  opacity: .5;
 }
 
 
 .project-row:hover {
+  padding-left: 14px;
+
+  padding-right: 14px;
+
   background: var(--accent);
 
   color: #090a09;
-
-  padding-left: 18px;
-
-  padding-right: 18px;
 }
 
 
@@ -526,38 +514,36 @@ h1 .accent {
 }
 
 
-/* =========================================
-   BIO
-========================================= */
+/* BIO */
 
 .bio-grid {
+  padding-top: 46px;
+
   display: grid;
 
   grid-template-columns:
-    1.3fr
-    0.7fr;
+    1.15fr
+    .85fr;
 
-  gap: 100px;
-
-  padding-top: 65px;
+  gap: 72px;
 }
 
 
 .bio-big {
-  margin: 0;
+  max-width: 780px;
 
-  max-width: 900px;
+  margin: 0;
 
   font-size:
     clamp(
-      42px,
-      6vw,
-      90px
+      30px,
+      4vw,
+      58px
     );
 
-  line-height: 0.96;
+  line-height: .98;
 
-  letter-spacing: -0.055em;
+  letter-spacing: -.048em;
 }
 
 
@@ -568,18 +554,20 @@ h1 .accent {
 
   color: var(--muted);
 
-  font-size: 17px;
+  font-size: 15px;
 
   line-height: 1.55;
 }
 
 
-/* =========================================
-   FOOTER
-========================================= */
+/* FOOTER */
 
 footer {
-  min-height: 230px;
+  min-height: 180px;
+
+  padding:
+    28px
+    0;
 
   border-top:
     1px
@@ -593,17 +581,13 @@ footer {
     auto
     auto;
 
-  gap: 44px;
+  gap: 36px;
 
   align-items: end;
 
-  padding:
-    35px
-    0;
-
   color: var(--muted);
 
-  font-size: 12px;
+  font-size: 11px;
 }
 
 
@@ -612,18 +596,16 @@ footer a {
 
   font-size:
     clamp(
-      20px,
-      2.2vw,
-      34px
+      18px,
+      1.8vw,
+      28px
     );
 
-  letter-spacing: -0.03em;
+  letter-spacing: -.025em;
 }
 
 
-/* =========================================
-   PROJECT PAGE
-========================================= */
+/* PROJECT PAGE */
 
 .project-page {
   position: fixed;
@@ -646,31 +628,34 @@ footer a {
 
   transition:
     transform
-    0.72s
+    .72s
     cubic-bezier(0.76, 0, 0.24, 1);
 }
 
 
 .project-page.open {
-  transform: translateX(-100vw);
+  transform:
+    translateX(-100vw);
 }
 
 
 .project-page-inner {
-  width: min(
-    calc(100% - 80px),
-    1520px
-  );
+  width:
+    min(
+      calc(100% - 72px),
+      1380px
+    );
 
-  margin: 0 auto;
+  margin:
+    0
+    auto;
 
-  padding-bottom: 160px;
+  padding-bottom:
+    120px;
 }
 
 
-/* =========================================
-   PROJECT TOP BAR
-========================================= */
+/* PROJECT TOP BAR */
 
 .project-page-top {
   position: sticky;
@@ -679,7 +664,7 @@ footer a {
 
   z-index: 20;
 
-  height: 82px;
+  height: 58px;
 
   display: flex;
 
@@ -688,32 +673,17 @@ footer a {
   justify-content: space-between;
 
   background:
-    rgba(
-      2,
-      3,
-      3,
-      0.92
-    );
+    rgba(2,3,3,.9);
 
   backdrop-filter:
-    blur(12px);
-
-  border-bottom:
-    1px
-    solid
-    rgba(
-      40,
-      45,
-      43,
-      0.65
-    );
+    blur(10px);
 }
 
 
 .project-back {
-  border: 0;
-
   padding: 0;
+
+  border: 0;
 
   background: transparent;
 
@@ -721,9 +691,9 @@ footer a {
 
   cursor: pointer;
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
@@ -735,29 +705,27 @@ footer a {
 .project-page-index {
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
-/* =========================================
-   PROJECT INTRO
-========================================= */
+/* PROJECT INTRO */
 
 .project-intro {
-  min-height: 86vh;
+  min-height: 56vh;
+
+  padding:
+    62px
+    0
+    68px;
 
   display: flex;
 
   flex-direction: column;
 
   justify-content: center;
-
-  padding:
-    90px
-    0
-    120px;
 }
 
 
@@ -765,140 +733,135 @@ footer a {
   margin:
     0
     0
-    38px;
+    22px;
 
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
 .project-page-title {
-  max-width: 1200px;
+  max-width: 1040px;
 
   margin: 0;
 
   font-size:
     clamp(
-      68px,
-      10vw,
-      158px
+      46px,
+      6vw,
+      92px
     );
 
   font-weight: 500;
 
-  line-height: 0.86;
+  line-height: .92;
 
-  letter-spacing: -0.07em;
+  letter-spacing: -.058em;
 }
 
 
 .project-intro-copy {
-  max-width: 760px;
+  max-width: 680px;
 
   margin:
-    55px
+    30px
     0
     0;
 
-  color: #d5d5cf;
+  color: #cfd0ca;
 
   font-size:
     clamp(
-      19px,
-      1.7vw,
-      27px
+      16px,
+      1.3vw,
+      20px
     );
 
-  line-height: 1.45;
+  line-height: 1.5;
 
-  letter-spacing: -0.025em;
+  letter-spacing: -.018em;
 }
 
 
 .project-quick-stats {
   margin:
-    45px
+    25px
     0
     0;
 
   color: var(--accent);
 
-  font-size: 12px;
+  font-size: 10px;
 
-  letter-spacing: 0.08em;
+  letter-spacing: .08em;
 }
 
 
-/* =========================================
-   PROJECT SECTIONS
-========================================= */
+/* PROJECT SECTIONS */
 
 .scratch-section {
   padding:
-    130px
+    82px
     0;
-
-  border-top:
-    1px
-    solid
-    var(--line);
 }
 
 
 .scratch-label {
-  margin-bottom: 65px;
+  margin-bottom: 34px;
 
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
 .scratch-section h3 {
   margin: 0;
 
+  max-width: 680px;
+
   font-size:
     clamp(
-      42px,
-      5.7vw,
-      88px
+      30px,
+      3.5vw,
+      52px
     );
 
   font-weight: 500;
 
-  line-height: 0.96;
+  line-height: 1;
 
-  letter-spacing: -0.055em;
+  letter-spacing: -.045em;
 }
 
 
-/* =========================================
-   HOW IT WORKS
-========================================= */
+/* HOW IT WORKS */
 
 .how-grid {
   display: grid;
 
   grid-template-columns:
-    0.9fr
+    .9fr
     1.1fr;
 
   gap:
     clamp(
-      70px,
-      10vw,
-      170px
+      52px,
+      8vw,
+      120px
     );
+
+  align-items: start;
 }
 
 
 .simple-flow {
-  margin-top: 75px;
+  margin-top: 46px;
 
   display: flex;
 
@@ -906,34 +869,34 @@ footer a {
 
   align-items: flex-start;
 
-  gap: 11px;
+  gap: 8px;
 }
 
 
 .simple-flow span:not(.flow-arrow) {
   font-size:
     clamp(
-      18px,
-      1.7vw,
-      25px
+      16px,
+      1.35vw,
+      20px
     );
 }
 
 
 .flow-arrow {
-  color: var(--accent);
+  padding-left: 3px;
 
-  padding-left: 4px;
+  color: var(--accent);
 }
 
 
 .equation-stack {
-  padding-top: 35px;
+  padding-top: 16px;
 }
 
 
 .loose-equation {
-  margin-bottom: 72px;
+  margin-bottom: 44px;
 }
 
 
@@ -942,68 +905,54 @@ footer a {
 
   font-size:
     clamp(
-      38px,
-      4vw,
-      68px
+      28px,
+      2.7vw,
+      40px
     );
 
   font-weight: 400;
 
-  letter-spacing: -0.05em;
+  letter-spacing: -.04em;
 }
 
 
 .loose-equation span {
   display: block;
 
-  margin-top: 10px;
+  margin-top: 7px;
 
   color: var(--muted);
 
-  font-size: 12px;
+  font-size: 11px;
 }
 
 
 .offset-equation {
-  margin-left: 14%;
+  margin-left: 9%;
 }
 
 
-/* =========================================
-   READ MORE
-========================================= */
+/* DETAILS */
 
 .project-details {
-  margin-top: 75px;
-
-  border-top:
-    1px
-    solid
-    var(--line);
-
-  border-bottom:
-    1px
-    solid
-    var(--line);
+  margin-top: 44px;
 }
 
 
 .project-details summary {
-  min-height: 72px;
-
-  display: flex;
+  display: inline-flex;
 
   align-items: center;
 
-  justify-content: space-between;
+  gap: 9px;
 
   cursor: pointer;
 
   color: var(--muted);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .12em;
 
   list-style: none;
 }
@@ -1019,9 +968,7 @@ footer a {
 
   color: var(--accent);
 
-  font-size: 22px;
-
-  font-weight: 300;
+  font-size: 17px;
 }
 
 
@@ -1036,49 +983,45 @@ footer a {
 
 
 .details-content {
+  max-width: 760px;
+
   padding:
-    15px
+    22px
     0
-    55px;
+    18px;
 
-  max-width: 920px;
+  color: #b9bbb5;
 
-  color: #c2c3bd;
-
-  font-size: 17px;
+  font-size: 15px;
 
   line-height: 1.6;
 }
 
 
-/* =========================================
-   MODULES
-========================================= */
-
 .module-list {
   margin:
-    45px
+    30px
     0;
 }
 
 
 .module-list div {
-  display: grid;
-
-  grid-template-columns:
-    190px
-    1fr;
-
-  gap: 25px;
-
   padding:
-    17px
+    12px
     0;
 
   border-bottom:
     1px
     solid
-    var(--line);
+    rgba(40,45,43,.6);
+
+  display: grid;
+
+  grid-template-columns:
+    170px
+    1fr;
+
+  gap: 20px;
 }
 
 
@@ -1089,33 +1032,42 @@ footer a {
 }
 
 
-.module-list span {
-  color: var(--muted);
-}
-
-
+.module-list span,
 .project-note {
   color: var(--muted);
 }
 
 
-/* =========================================
-   EXAMPLE RUN
-========================================= */
+/* EXAMPLE */
 
-.input-line {
-  margin-top: 75px;
+.example-layout {
+  margin-top: 45px;
 
-  display: flex;
+  display: grid;
+
+  grid-template-columns:
+    .8fr
+    1.2fr;
 
   gap:
     clamp(
-      45px,
+      50px,
       8vw,
-      125px
+      120px
     );
 
+  align-items: center;
+}
+
+
+.input-line {
+  display: flex;
+
   flex-wrap: wrap;
+
+  gap:
+    28px
+    42px;
 }
 
 
@@ -1124,25 +1076,25 @@ footer a {
 
   flex-direction: column;
 
-  gap: 10px;
+  gap: 7px;
 }
 
 
 .input-line span {
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 9px;
 
-  letter-spacing: 0.13em;
+  letter-spacing: .13em;
 }
 
 
 .input-line strong {
   font-size:
     clamp(
-      24px,
-      2.3vw,
-      38px
+      19px,
+      1.6vw,
+      26px
     );
 
   font-weight: 400;
@@ -1150,32 +1102,30 @@ footer a {
 
 
 .loose-results {
-  margin-top: 115px;
+  margin-top: 46px;
 
   display: grid;
 
   grid-template-columns:
-    repeat(4, 1fr);
+    1fr
+    1fr;
 
   gap:
-    clamp(
-      30px,
-      5vw,
-      90px
-    );
+    30px
+    24px;
 }
 
 
 .loose-results span {
   display: block;
 
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 
   color: var(--muted);
 
-  font-size: 10px;
+  font-size: 9px;
 
-  letter-spacing: 0.13em;
+  letter-spacing: .13em;
 }
 
 
@@ -1184,30 +1134,26 @@ footer a {
 
   font-size:
     clamp(
-      37px,
-      4.6vw,
-      74px
+      25px,
+      2.7vw,
+      42px
     );
 
   font-weight: 400;
 
-  letter-spacing: -0.055em;
+  letter-spacing: -.045em;
 }
 
 
-/* =========================================
-   MEDIA PLACEHOLDERS
-========================================= */
+/* MEDIA */
 
 .project-media-placeholder {
-  min-height: 420px;
-
-  margin-top: 100px;
+  min-height: 300px;
 
   border:
     1px
     dashed
-    #323735;
+    #303532;
 
   display: flex;
 
@@ -1217,57 +1163,56 @@ footer a {
 
   justify-content: center;
 
-  color: #666b68;
+  color: #5c625e;
 }
 
 
 .project-media-placeholder span {
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
 .project-media-placeholder small {
-  margin-top: 12px;
+  margin-top: 9px;
 
-  color: #484d4a;
+  color: #444a46;
 }
 
 
-/* =========================================
-   SMALL RESULTS
-========================================= */
-
 .small-results {
+  max-width: 720px;
+
   display: grid;
 
   grid-template-columns:
-    repeat(2, 1fr);
+    1fr
+    1fr;
 
   gap:
-    10px
-    70px;
+    4px
+    52px;
 }
 
 
 .small-results p {
-  display: flex;
-
-  justify-content: space-between;
-
-  gap: 30px;
-
   margin: 0;
 
   padding:
-    16px
+    11px
     0;
 
   border-bottom:
     1px
     solid
-    var(--line);
+    rgba(40,45,43,.6);
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 24px;
 }
 
 
@@ -1277,158 +1222,189 @@ footer a {
 
 
 .small-results strong {
-  color: var(--text);
-
   font-weight: 400;
 }
 
 
-/* =========================================
-   PERFORMANCE
-========================================= */
+/* PERFORMANCE */
 
 .section-intro-grid {
+  max-width: 1120px;
+
   display: grid;
 
   grid-template-columns:
     1fr
-    0.75fr;
+    .72fr;
 
-  gap: 100px;
+  gap: 70px;
 
   align-items: end;
 }
 
 
 .section-intro-grid p {
-  margin: 0;
+  max-width: 430px;
 
-  max-width: 520px;
+  margin: 0;
 
   color: var(--muted);
 
-  font-size: 18px;
+  font-size: 15px;
 
   line-height: 1.55;
 }
 
 
 .performance-grid {
-  display: grid;
-
-  grid-template-columns:
-    1fr
-    1fr;
-
-  gap:
-    100px
-    45px;
-
-  margin-top: 100px;
+  margin-top: 72px;
 }
 
 
 .performance-plot {
-  max-width: 100%;
+  display: grid;
+
+  align-items: end;
+
+  gap: 28px;
+
+  margin-bottom: 90px;
 }
 
 
-.performance-offset {
-  margin-top: 85px;
+.plot-one {
+  width: 72%;
+
+  grid-template-columns:
+    1fr
+    230px;
+}
+
+
+.plot-two {
+  width: 64%;
+
+  margin-left: auto;
+
+  grid-template-columns:
+    220px
+    1fr;
+}
+
+
+.plot-three {
+  width: 54%;
+
+  grid-template-columns:
+    1fr
+    190px;
+}
+
+
+.plot-four {
+  width: 58%;
+
+  margin-left: auto;
+
+  grid-template-columns:
+    190px
+    1fr;
 }
 
 
 .plot-placeholder {
-  min-height: 390px;
+  min-height: 300px;
 
   border:
     1px
     dashed
-    #323735;
+    #303532;
 
   display: grid;
 
   place-items: center;
 
-  color: #555b57;
+  color: #505651;
 
-  font-size: 10px;
+  font-size: 9px;
 
-  letter-spacing: 0.13em;
+  letter-spacing: .13em;
 }
 
 
-.small-plot {
-  min-height: 310px;
+.plot-three .plot-placeholder,
+.plot-four .plot-placeholder {
+  min-height: 245px;
 }
 
 
-.performance-plot h4 {
+.plot-note h4 {
   margin:
-    22px
     0
-    7px;
+    0
+    8px;
 
-  font-size: 21px;
+  font-size: 18px;
 
   font-weight: 400;
 
-  letter-spacing: -0.025em;
+  letter-spacing: -.02em;
 }
 
 
-.performance-plot p {
-  max-width: 500px;
-
+.plot-note p {
   margin: 0;
 
   color: var(--muted);
 
-  font-size: 14px;
+  font-size: 13px;
 
   line-height: 1.5;
 }
 
 
-/* =========================================
-   TESTING
-========================================= */
+/* TESTING */
 
-.testing-grid {
+.testing-layout {
   display: grid;
 
   grid-template-columns:
-    0.8fr
-    1fr;
+    .75fr
+    1.25fr;
 
-  gap: 120px;
+  gap:
+    clamp(
+      55px,
+      8vw,
+      110px
+    );
 
-  align-items: start;
+  align-items: center;
 }
 
 
 .test-number {
   color: var(--accent);
+
+  font-size:
+    clamp(
+      38px,
+      4.2vw,
+      62px
+    )
+    !important;
 }
 
 
 .test-subtitle {
   margin:
-    15px
+    8px
     0
-    0;
+    30px;
 
   color: var(--muted);
 
-  font-size: 14px;
-}
-
-
-.test-notes {
-  border-top:
-    1px
-    solid
-    var(--line);
+  font-size: 12px;
 }
 
 
@@ -1436,23 +1412,23 @@ footer a {
   margin: 0;
 
   padding:
-    19px
+    11px
     0;
 
   border-bottom:
     1px
     solid
-    var(--line);
+    rgba(40,45,43,.6);
 
   display: flex;
 
   justify-content: space-between;
 
-  gap: 20px;
+  gap: 18px;
 
-  color: #c3c4bf;
+  color: #bfc0bb;
 
-  font-size: 16px;
+  font-size: 14px;
 }
 
 
@@ -1462,26 +1438,26 @@ footer a {
 
 
 .pytest-placeholder {
-  min-height: 340px;
+  min-height: 270px;
 }
 
 
-/* =========================================
-   NEXT
-========================================= */
+/* NEXT */
 
 .next-grid {
+  max-width: 1120px;
+
   display: grid;
 
   grid-template-columns:
     1fr
-    0.8fr;
+    .8fr;
 
   gap:
     clamp(
-      70px,
-      12vw,
-      190px
+      60px,
+      10vw,
+      150px
     );
 }
 
@@ -1489,7 +1465,7 @@ footer a {
 .simple-list,
 .next-list {
   margin:
-    55px
+    32px
     0
     0;
 
@@ -1500,54 +1476,49 @@ footer a {
 
 
 .simple-list li {
-  margin-bottom: 13px;
+  margin-bottom: 9px;
 
-  color: #777d79;
+  color: #747a76;
 
   font-size:
     clamp(
-      19px,
-      1.8vw,
-      27px
+      16px,
+      1.4vw,
+      20px
     );
-}
-
-
-.next-column {
-  padding-top: 20px;
 }
 
 
 .next-heading {
   color: var(--accent);
 
-  font-size: 12px;
+  font-size: 10px;
 
-  letter-spacing: 0.1em;
+  letter-spacing: .1em;
 }
 
 
 .next-list li {
-  margin-bottom: 17px;
+  margin-bottom: 11px;
 
   font-size:
     clamp(
-      22px,
-      2vw,
-      33px
+      18px,
+      1.7vw,
+      25px
     );
 
-  letter-spacing: -0.025em;
+  letter-spacing: -.02em;
 }
 
 
 .sources-details {
-  margin-top: 120px;
+  margin-top: 64px;
 }
 
 
 .sources-content {
-  max-width: none;
+  max-width: 900px;
 
   display: grid;
 
@@ -1555,77 +1526,73 @@ footer a {
     1fr
     1fr;
 
-  gap: 100px;
+  gap: 70px;
 }
 
 
 .sources-content ul {
-  padding-left: 18px;
+  padding-left: 17px;
 }
 
 
 .sources-content li {
-  margin-bottom: 12px;
+  margin-bottom: 9px;
 }
 
 
 .details-heading {
   color: var(--text);
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.13em;
+  letter-spacing: .13em;
 }
 
 
 .project-last-section {
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 }
 
 
-/* =========================================
-   OTHER PROJECT PLACEHOLDERS
-========================================= */
+/* OTHER PROJECTS */
 
 .project-placeholder-canvas {
   min-height: 100vh;
 
   padding:
-    120px
+    88px
     0;
 }
 
 
 .placeholder-project-heading {
-  padding-top: 70px;
+  padding-top: 42px;
 }
 
 
 .project-page-placeholder {
-  min-height: 500px;
+  min-height: 360px;
 
-  margin-top: 100px;
+  margin-top: 64px;
 
   border:
     1px
     dashed
-    #323735;
+    #303532;
 
   display: grid;
 
   place-items: center;
 
-  color: #555b57;
+  color: #505651;
 
-  font-size: 11px;
+  font-size: 10px;
 
-  letter-spacing: 0.14em;
+  letter-spacing: .14em;
 }
 
 
-/* =========================================
-   MOBILE
-========================================= */
+/* MOBILE */
 
 @media (max-width: 900px) {
 
@@ -1640,42 +1607,43 @@ footer a {
 
 
   .hero {
-    grid-template-columns: 1fr;
-
     min-height: auto;
 
-    padding-top: 120px;
+    padding:
+      100px
+      0
+      70px;
+
+    grid-template-columns: 1fr;
   }
 
 
   .eyebrow {
-    margin-bottom: 65px;
+    margin-bottom: 42px;
   }
 
 
   h1 {
     font-size:
       clamp(
-        72px,
-        20vw,
-        128px
+        64px,
+        18vw,
+        112px
       );
   }
 
 
   .hero-line {
-    margin-top: 70px;
+    margin-top: 42px;
   }
 
 
   .hero-nav {
     min-height: 0;
 
+    margin-top: 34px;
+
     grid-template-columns: 1fr;
-
-    gap: 0;
-
-    margin-top: 35px;
   }
 
 
@@ -1685,14 +1653,14 @@ footer a {
 
 
   .hero-nav-buttons {
-    gap: 14px;
+    gap: 11px;
   }
 
 
   .hero-nav-buttons a {
-    min-height: 78px;
+    min-height: 64px;
 
-    border-radius: 20px;
+    border-radius: 16px;
   }
 
 
@@ -1704,18 +1672,18 @@ footer a {
   .projects,
   .bio {
     padding:
-      95px
+      72px
       0;
   }
 
 
   .project-row {
-    grid-template-columns:
-      45px
-      1fr
-      28px;
+    min-height: 80px;
 
-    min-height: 94px;
+    grid-template-columns:
+      42px
+      1fr
+      26px;
   }
 
 
@@ -1727,30 +1695,28 @@ footer a {
   .bio-grid {
     grid-template-columns: 1fr;
 
-    gap: 40px;
+    gap: 30px;
   }
 
 
   footer {
     grid-template-columns: 1fr;
 
-    gap: 18px;
+    gap: 16px;
   }
 
-
-  /* PROJECT PAGE */
 
   .project-page-inner {
     width:
       min(
         calc(100% - 34px),
-        1520px
+        1380px
       );
   }
 
 
   .project-page-top {
-    height: 70px;
+    height: 54px;
   }
 
 
@@ -1758,94 +1724,78 @@ footer a {
     min-height: auto;
 
     padding:
-      100px
-      0;
+      72px
+      0
+      62px;
   }
 
 
   .project-page-title {
     font-size:
       clamp(
-        55px,
-        16vw,
-        100px
+        44px,
+        13vw,
+        78px
       );
-  }
-
-
-  .project-intro-copy {
-    margin-top: 40px;
   }
 
 
   .scratch-section {
     padding:
-      90px
+      64px
       0;
-  }
-
-
-  .scratch-label {
-    margin-bottom: 45px;
   }
 
 
   .how-grid,
   .section-intro-grid,
-  .testing-grid,
+  .example-layout,
+  .testing-layout,
   .next-grid,
   .sources-content {
     grid-template-columns: 1fr;
 
-    gap: 55px;
-  }
-
-
-  .equation-stack {
-    padding-top: 0;
+    gap: 38px;
   }
 
 
   .offset-equation {
-    margin-left: 8%;
+    margin-left: 5%;
   }
 
 
-  .loose-results {
-    grid-template-columns:
-      1fr
-      1fr;
-
-    gap:
-      55px
-      30px;
+  .terminal-placeholder,
+  .pytest-placeholder {
+    width: 100%;
   }
 
 
-  .performance-grid {
+  .performance-plot,
+  .plot-one,
+  .plot-two,
+  .plot-three,
+  .plot-four {
+    width: 100%;
+
+    margin:
+      0
+      0
+      58px;
+
     grid-template-columns: 1fr;
-
-    gap: 70px;
-
-    margin-top: 70px;
   }
 
 
-  .performance-offset {
-    margin-top: 0;
+  .plot-two .plot-note,
+  .plot-four .plot-note {
+    order: 2;
   }
 
 
   .plot-placeholder,
-  .small-plot {
-    min-height: 280px;
-  }
-
-
-  .module-list div {
-    grid-template-columns: 1fr;
-
-    gap: 5px;
+  .plot-three .plot-placeholder,
+  .plot-four .plot-placeholder {
+    min-height: 250px;
   }
 
 
@@ -1854,30 +1804,14 @@ footer a {
   }
 
 
-  .input-line {
-    gap:
-      35px
-      55px;
-  }
+  .module-list div {
+    grid-template-columns: 1fr;
 
-
-  .project-media-placeholder {
-    min-height: 300px;
-
-    margin-top: 70px;
-  }
-
-
-  .sources-details {
-    margin-top: 85px;
+    gap: 4px;
   }
 
 }
 
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
 
 @media (max-width: 560px) {
 
@@ -1889,19 +1823,9 @@ footer a {
   .project-page-title {
     font-size:
       clamp(
-        52px,
-        15vw,
-        78px
-      );
-  }
-
-
-  .loose-equation strong {
-    font-size:
-      clamp(
-        31px,
-        10vw,
-        48px
+        42px,
+        13vw,
+        68px
       );
   }
 
@@ -1911,14 +1835,9 @@ footer a {
   }
 
 
-  .project-media-placeholder {
-    min-height: 230px;
-  }
-
-
-  .plot-placeholder,
-  .small-plot {
-    min-height: 240px;
+  .project-media-placeholder,
+  .plot-placeholder {
+    min-height: 220px;
   }
 
 }
