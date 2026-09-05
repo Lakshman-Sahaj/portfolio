@@ -92,12 +92,12 @@
 
           <button class="project-row"
             data-project="01"
-            data-title="Project 01"
-            data-category="Software / Engineering">
+            data-title="Aircraft Performance Calculator"
+            data-category="Python / Aerospace / Performance Analysis">
 
             <span class="project-number">01</span>
-            <span class="project-title">Project 01</span>
-            <span class="project-type">COMING SOON</span>
+            <span class="project-title">Aircraft Performance Calculator</span>
+            <span class="project-type">PYTHON · AEROSPACE</span>
             <span class="project-arrow">↗</span>
 
           </button>
@@ -239,44 +239,335 @@
     id="projectPage"
     aria-hidden="true"
   >
-
     <div class="project-page-inner">
 
       <div class="project-page-top">
-
         <button class="project-back" id="projectBack">
           ← BACK
         </button>
 
-        <span class="project-page-index" id="projectPageIndex">
-          01
-        </span>
-
+        <span class="project-page-index" id="projectPageIndex">01</span>
       </div>
 
       <div class="project-page-heading">
-
         <p class="project-page-category" id="projectPageCategory">
-          SOFTWARE / ENGINEERING
+          PYTHON / AEROSPACE / PERFORMANCE ANALYSIS
         </p>
 
         <h2 class="project-page-title" id="projectPageTitle">
-          Project 01
+          Aircraft Performance Calculator
         </h2>
+
+        <p class="project-page-deck" id="projectPageDeck">
+          A Python-based fixed-wing performance analysis tool for exploring
+          lift, drag, aerodynamic efficiency, climb performance, range, and endurance.
+        </p>
+
+        <div class="project-tech-row" id="projectTechRow">
+          <span>PYTHON</span>
+          <span>NUMPY</span>
+          <span>MATPLOTLIB</span>
+          <span>PYTEST</span>
+        </div>
+      </div>
+
+      <div class="project-page-canvas" id="projectCaseStudy">
+
+        <div class="project-hero-visual">
+          <div class="visual-placeholder">
+            <span>PROJECT HERO GRAPHIC</span>
+            <small>Aircraft silhouette + performance curve + equations</small>
+          </div>
+        </div>
+
+        <div class="project-metrics">
+          <div class="metric-card">
+            <strong>23</strong>
+            <span>Automated Tests</span>
+          </div>
+          <div class="metric-card">
+            <strong>4</strong>
+            <span>Performance Curves</span>
+          </div>
+          <div class="metric-card">
+            <strong>5</strong>
+            <span>Core Python Modules</span>
+          </div>
+          <div class="metric-card">
+            <strong>60 m/s</strong>
+            <span>Example Airspeed</span>
+          </div>
+        </div>
+
+        <section class="case-section">
+          <div class="case-kicker">01 / WHY I BUILT IT</div>
+          <div class="case-two-col">
+            <h3>Turning aircraft performance theory into a working model.</h3>
+            <div class="case-copy">
+              <p>
+                Aircraft performance equations are usually introduced one at a time:
+                lift, drag, dynamic pressure, power required, and climb rate.
+                I wanted to see what happened when those relationships were connected
+                inside one working model.
+              </p>
+              <p>
+                I built the Aircraft Performance Calculator to turn those equations into
+                reusable software. A flight condition enters the program, atmospheric
+                properties are calculated, aerodynamic forces are resolved, and those
+                results feed directly into performance calculations.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <div class="case-kicker">02 / MODEL FLOW</div>
+          <div class="case-two-col">
+            <h3>From flight condition to performance.</h3>
+            <div class="flow-diagram">
+              <span>AIRCRAFT PARAMETERS</span>
+              <b>↓</b>
+              <span>ALTITUDE + AIRSPEED</span>
+              <b>↓</b>
+              <span>ATMOSPHERE</span>
+              <b>↓</b>
+              <span>DYNAMIC PRESSURE</span>
+              <b>↓</b>
+              <span>REQUIRED C<sub>L</sub></span>
+              <b>↓</b>
+              <span>DRAG</span>
+              <b>↓</b>
+              <span>POWER + EXCESS THRUST</span>
+              <b>↓</b>
+              <span>AIRCRAFT PERFORMANCE</span>
+            </div>
+          </div>
+
+          <div class="equation-grid">
+            <div class="equation-card">
+              <span>Dynamic Pressure</span>
+              <strong>q = ½ρV²</strong>
+            </div>
+            <div class="equation-card">
+              <span>Required Lift Coefficient</span>
+              <strong>C<sub>L</sub> = W / qS</strong>
+            </div>
+            <div class="equation-card">
+              <span>Drag Polar</span>
+              <strong>C<sub>D</sub> = C<sub>D0</sub> + kC<sub>L</sub>²</strong>
+            </div>
+            <div class="equation-card">
+              <span>Rate of Climb</span>
+              <strong>ROC = (T − D)V / W</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <div class="case-kicker">03 / EXAMPLE FLIGHT CONDITION</div>
+          <div class="condition-grid">
+            <div class="condition-panel">
+              <span>Altitude</span>
+              <strong>2,500 m</strong>
+            </div>
+            <div class="condition-panel">
+              <span>Airspeed</span>
+              <strong>60 m/s</strong>
+            </div>
+            <div class="condition-panel">
+              <span>Aircraft Mass</span>
+              <strong>1,100 kg</strong>
+            </div>
+          </div>
+
+          <div class="results-grid">
+            <div class="result-card emphasis">
+              <span>Lift / Drag</span>
+              <strong>11.66</strong>
+            </div>
+            <div class="result-card emphasis">
+              <span>Drag</span>
+              <strong>925 N</strong>
+            </div>
+            <div class="result-card emphasis">
+              <span>Thrust / Weight</span>
+              <strong>0.148</strong>
+            </div>
+            <div class="result-card emphasis">
+              <span>Rate of Climb</span>
+              <strong>3.76 m/s</strong>
+            </div>
+            <div class="result-card">
+              <span>Air Density</span>
+              <strong>0.957 kg/m³</strong>
+            </div>
+            <div class="result-card">
+              <span>Weight</span>
+              <strong>10,787 N</strong>
+            </div>
+            <div class="result-card">
+              <span>Required C<sub>L</sub></span>
+              <strong>0.387</strong>
+            </div>
+            <div class="result-card">
+              <span>Drag Coefficient</span>
+              <strong>0.0331</strong>
+            </div>
+          </div>
+
+          <div class="media-placeholder">
+            <span>TERMINAL OUTPUT SCREENSHOT</span>
+            <small>Add the real console output here later.</small>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <div class="case-kicker">04 / PERFORMANCE CURVES</div>
+          <div class="case-two-col">
+            <h3>Reading how the aircraft behaves across airspeed.</h3>
+            <p class="case-copy-single">
+              The plots are not just output. They show where the aircraft is most
+              efficient, where drag begins to rise quickly, and where excess power
+              produces the strongest climb performance.
+            </p>
+          </div>
+
+          <div class="plots-grid">
+            <article class="plot-card large">
+              <div class="plot-placeholder">RATE OF CLIMB VS AIRSPEED</div>
+              <h4>Rate of Climb vs Airspeed</h4>
+              <p>Shows where excess power is strongest and how climb performance changes away from the optimum region.</p>
+            </article>
+
+            <article class="plot-card large">
+              <div class="plot-placeholder">L/D VS AIRSPEED</div>
+              <h4>Lift-to-Drag Ratio vs Airspeed</h4>
+              <p>Highlights the airspeed region where the aircraft reaches its strongest aerodynamic efficiency.</p>
+            </article>
+
+            <article class="plot-card">
+              <div class="plot-placeholder">DRAG VS AIRSPEED</div>
+              <h4>Drag vs Airspeed</h4>
+              <p>Shows the tradeoff between induced drag at lower speeds and parasitic drag at higher speeds.</p>
+            </article>
+
+            <article class="plot-card">
+              <div class="plot-placeholder">POWER REQUIRED VS AIRSPEED</div>
+              <h4>Power Required vs Airspeed</h4>
+              <p>Shows how the power needed to maintain flight changes across the modeled speed range.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <div class="case-kicker">05 / SOFTWARE ARCHITECTURE</div>
+          <div class="case-two-col">
+            <h3>Built as separate, reusable analysis modules.</h3>
+            <div class="architecture-list">
+              <div><strong>aircraft.py</strong><span>Aircraft configuration and validation</span></div>
+              <div><strong>atmosphere.py</strong><span>ISA atmospheric model</span></div>
+              <div><strong>aerodynamics.py</strong><span>Lift, drag, C<sub>L</sub>, and L/D</span></div>
+              <div><strong>propulsion.py</strong><span>Thrust calculations</span></div>
+              <div><strong>performance.py</strong><span>Power, climb, range, and endurance</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <div class="case-kicker">06 / TESTING + VALIDATION</div>
+          <div class="testing-head">
+            <h3>23 Tests.<br>All Passing.</h3>
+            <div class="test-list">
+              <span>Sea-level ISA density is reasonable.</span>
+              <span>Density decreases with altitude.</span>
+              <span>Lift matches weight in level flight.</span>
+              <span>Thrust equal to drag gives zero climb.</span>
+              <span>More thrust increases climb rate.</span>
+              <span>More drag reduces climb rate.</span>
+              <span>Better L/D increases estimated range.</span>
+            </div>
+          </div>
+
+          <div class="media-placeholder">
+            <span>PYTEST SCREENSHOT</span>
+            <small>Add the real test output here later.</small>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <div class="case-kicker">07 / MODEL BOUNDARIES</div>
+          <div class="boundary-grid">
+            <div>
+              <h4>Current Model</h4>
+              <ul>
+                <li>SI units</li>
+                <li>Subsonic fixed-wing flight</li>
+                <li>ISA troposphere</li>
+                <li>Steady flight assumptions</li>
+                <li>Parabolic drag polar</li>
+                <li>User-provided thrust</li>
+                <li>Simplified Breguet estimates</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Not Yet Modeled</h4>
+              <ul>
+                <li>Compressibility effects</li>
+                <li>Reynolds-number effects</li>
+                <li>Detailed engine maps</li>
+                <li>Wind</li>
+                <li>Takeoff and landing</li>
+                <li>Transient dynamics</li>
+                <li>Stability and control</li>
+                <li>Full mission profiles</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <div class="case-kicker">08 / SOURCES + WHAT'S NEXT</div>
+          <div class="case-two-col">
+            <div>
+              <h3>References</h3>
+              <ul class="source-list">
+                <li>John D. Anderson, <em>Aircraft Performance and Design</em></li>
+                <li>Daniel P. Raymer, <em>Aircraft Design: A Conceptual Approach</em></li>
+                <li>FAA, <em>Pilot's Handbook of Aeronautical Knowledge</em></li>
+                <li>NASA Glenn, <em>Beginner's Guide to Aeronautics</em></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3>What's Next?</h3>
+              <div class="roadmap-grid">
+                <div>
+                  <strong>Flight Performance</strong>
+                  <span>Stall speed, Vx, Vy, service ceiling, glide performance</span>
+                </div>
+                <div>
+                  <strong>Higher Fidelity</strong>
+                  <span>Mach effects, thrust lapse, improved propulsion modeling</span>
+                </div>
+                <div>
+                  <strong>Interface</strong>
+                  <span>Interactive inputs, aircraft comparison, mission profiles</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
       </div>
 
-      <div class="project-page-canvas">
-
+      <div class="project-placeholder-canvas" id="projectPlaceholderCanvas" hidden>
         <div class="project-page-placeholder">
           PROJECT VISUAL / MEDIA
         </div>
 
         <div class="project-page-overview">
-
           <div>
             <p class="project-page-label">OVERVIEW</p>
-
             <p class="project-page-copy">
               This project is currently in development.
               Full process, visuals, technical details, and results
@@ -286,18 +577,12 @@
 
           <div>
             <p class="project-page-label">STATUS</p>
-
-            <p class="project-page-copy">
-              Coming soon.
-            </p>
+            <p class="project-page-copy">Coming soon.</p>
           </div>
-
         </div>
-
       </div>
 
     </div>
-
   </section>
 
   <script src="script.js"></script>
