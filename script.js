@@ -5,32 +5,42 @@ document.getElementById("year").textContent =
 const siteShell =
   document.getElementById("siteShell");
 
+
 const projectPage =
   document.getElementById("projectPage");
+
 
 const projectBack =
   document.getElementById("projectBack");
 
+
 const projectPageIndex =
   document.getElementById("projectPageIndex");
+
 
 const projectPageTitle =
   document.getElementById("projectPageTitle");
 
+
 const projectPageCategory =
   document.getElementById("projectPageCategory");
+
 
 const projectCaseStudy =
   document.getElementById("projectCaseStudy");
 
+
 const projectPlaceholderCanvas =
   document.getElementById("projectPlaceholderCanvas");
+
 
 const placeholderTitle =
   document.getElementById("placeholderTitle");
 
+
 const placeholderCategory =
   document.getElementById("placeholderCategory");
+
 
 
 document
@@ -41,12 +51,17 @@ document
       "click",
       () => {
 
+        const projectNumber =
+          project.dataset.project;
+
+
         const isAircraftProject =
-          project.dataset.project === "01";
+          projectNumber === "01";
 
 
         projectPageIndex.textContent =
-          project.dataset.project;
+          projectNumber;
+
 
 
         if (isAircraftProject) {
@@ -54,11 +69,14 @@ document
           projectCaseStudy.hidden =
             false;
 
+
           projectPlaceholderCanvas.hidden =
             true;
 
+
           projectPageTitle.textContent =
             project.dataset.title;
+
 
           projectPageCategory.textContent =
             project.dataset.category.toUpperCase();
@@ -68,16 +86,20 @@ document
           projectCaseStudy.hidden =
             true;
 
+
           projectPlaceholderCanvas.hidden =
             false;
 
+
           placeholderTitle.textContent =
             project.dataset.title;
+
 
           placeholderCategory.textContent =
             project.dataset.category.toUpperCase();
 
         }
+
 
 
         siteShell.classList.add(
@@ -108,6 +130,7 @@ document
   });
 
 
+
 function closeProject() {
 
   siteShell.classList.remove(
@@ -132,10 +155,12 @@ function closeProject() {
 }
 
 
+
 projectBack.addEventListener(
   "click",
   closeProject
 );
+
 
 
 document.addEventListener(
