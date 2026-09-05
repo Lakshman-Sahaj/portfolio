@@ -7,33 +7,45 @@
   <title>Lakshman Sahaj</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <header class="topbar">
-    <a class="monogram" href="#top">LS</a>
-  </header>
 
-  <main id="top">
+  <!-- MAIN SITE -->
+  <div class="site-shell" id="siteShell">
 
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">ATLANTA, GA · COMPUTER SCIENCE + BUSINESS</p>
+    <header class="topbar">
+      <a class="monogram" href="#top">LS</a>
+    </header>
 
-        <h1>
-          <span>Lakshman</span>
-          <span class="accent">Sahaj.</span>
-        </h1>
+    <main id="top">
 
-        <p class="hero-line">
-          Building across software, data, engineering,
-          manufacturing, and operations.
-        </p>
-      </div>
+      <!-- HERO -->
+      <section class="hero">
 
-      <aside class="hero-nav" aria-label="Profile links">
-        <div class="hero-nav-line"></div>
+        <div class="hero-copy">
 
-        <div class="hero-nav-content">
+          <p class="eyebrow">
+            ATLANTA, GA · COMPUTER SCIENCE + BUSINESS
+          </p>
+
+          <h1>
+            <span>Lakshman</span>
+            <span class="accent">Sahaj.</span>
+          </h1>
+
+          <p class="hero-line">
+            Building across software, data, engineering,
+            manufacturing, and operations.
+          </p>
+
+        </div>
+
+        <aside class="hero-nav" aria-label="Profile links">
+
+          <div class="hero-nav-line"></div>
+
           <div class="hero-nav-buttons">
+
             <a
               href="https://www.linkedin.com/in/lakshman-sahaj-894526235/"
               target="_blank"
@@ -51,170 +63,244 @@
               <span>Resume</span>
               <span class="arrow">↗</span>
             </a>
+
+            <a href="#bio">
+              <span>Bio</span>
+              <span class="arrow">↓</span>
+            </a>
+
           </div>
 
-          <div class="hero-bio">
-            <p class="hero-bio-label">BIO</p>
+        </aside>
 
-            <p class="hero-bio-text">
-              Computer Science and Business student at Georgia State University
-              working across software, data, engineering, manufacturing, and
-              operations. I enjoy building useful systems, improving processes,
-              and turning technical ideas into things people can actually use.
-            </p>
-          </div>
+        <a class="scroll-cue" href="#projects">
+          <span>PROJECTS</span>
+          <span>↓</span>
+        </a>
+
+      </section>
+
+      <!-- PROJECTS -->
+      <section class="projects" id="projects">
+
+        <div class="section-label">
+          <span>PROJECTS</span>
+          <span>SELECTED / IN PROGRESS</span>
         </div>
-      </aside>
 
-      <a class="scroll-cue" href="#projects">
-        <span>PROJECTS</span>
-        <span>↓</span>
-      </a>
-    </section>
+        <div class="project-list">
 
-    <section class="projects" id="projects">
-      <div class="section-label">
-        <span>PROJECTS</span>
-        <span>SELECTED / IN PROGRESS</span>
+          <button class="project-row"
+            data-project="01"
+            data-title="Project 01"
+            data-category="Software / Engineering">
+
+            <span class="project-number">01</span>
+            <span class="project-title">Project 01</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+          <button class="project-row"
+            data-project="02"
+            data-title="Project 02"
+            data-category="Data / Systems">
+
+            <span class="project-number">02</span>
+            <span class="project-title">Project 02</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+          <button class="project-row"
+            data-project="03"
+            data-title="Project 03"
+            data-category="Engineering">
+
+            <span class="project-number">03</span>
+            <span class="project-title">Project 03</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+          <button class="project-row"
+            data-project="04"
+            data-title="Project 04"
+            data-category="Automation">
+
+            <span class="project-number">04</span>
+            <span class="project-title">Project 04</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+          <button class="project-row"
+            data-project="05"
+            data-title="Project 05"
+            data-category="Software">
+
+            <span class="project-number">05</span>
+            <span class="project-title">Project 05</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+          <button class="project-row"
+            data-project="06"
+            data-title="Project 06"
+            data-category="Manufacturing">
+
+            <span class="project-number">06</span>
+            <span class="project-title">Project 06</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+          <button class="project-row"
+            data-project="07"
+            data-title="Project 07"
+            data-category="Data">
+
+            <span class="project-number">07</span>
+            <span class="project-title">Project 07</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+          <button class="project-row"
+            data-project="08"
+            data-title="Project 08"
+            data-category="Systems">
+
+            <span class="project-number">08</span>
+            <span class="project-title">Project 08</span>
+            <span class="project-type">COMING SOON</span>
+            <span class="project-arrow">↗</span>
+
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- BIO -->
+      <section class="bio" id="bio">
+
+        <div class="section-label">
+          <span>BIO</span>
+          <span>ABOUT</span>
+        </div>
+
+        <div class="bio-grid">
+
+          <p class="bio-big">
+            Computer science, business, engineering, and operations.
+          </p>
+
+          <p class="bio-small">
+            I am a Georgia State University student building experience across
+            software, data, aerospace, manufacturing, automation, and operations.
+            This portfolio is a work in progress and will grow as new projects
+            are completed.
+          </p>
+
+        </div>
+
+      </section>
+
+      <footer>
+
+        <a href="mailto:Lakshman.Sahaj@gmail.com">
+          Lakshman.Sahaj@gmail.com ↗
+        </a>
+
+        <span>Atlanta, GA</span>
+
+        <span>
+          © <span id="year"></span> Lakshman Sahaj
+        </span>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- FULL-SCREEN PROJECT PAGE -->
+  <section
+    class="project-page"
+    id="projectPage"
+    aria-hidden="true"
+  >
+
+    <div class="project-page-inner">
+
+      <div class="project-page-top">
+
+        <button class="project-back" id="projectBack">
+          ← BACK
+        </button>
+
+        <span class="project-page-index" id="projectPageIndex">
+          01
+        </span>
+
       </div>
 
-      <div class="project-list">
+      <div class="project-page-heading">
 
-        <button
-          class="project-row"
-          data-project="01"
-          data-title="Project 01"
-          data-category="Software / Engineering"
-        >
-          <span class="project-number">01</span>
-          <span class="project-title">Project 01</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-        <button
-          class="project-row"
-          data-project="02"
-          data-title="Project 02"
-          data-category="Data / Systems"
-        >
-          <span class="project-number">02</span>
-          <span class="project-title">Project 02</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-        <button
-          class="project-row"
-          data-project="03"
-          data-title="Project 03"
-          data-category="Engineering"
-        >
-          <span class="project-number">03</span>
-          <span class="project-title">Project 03</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-        <button
-          class="project-row"
-          data-project="04"
-          data-title="Project 04"
-          data-category="Automation"
-        >
-          <span class="project-number">04</span>
-          <span class="project-title">Project 04</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-        <button
-          class="project-row"
-          data-project="05"
-          data-title="Project 05"
-          data-category="Software"
-        >
-          <span class="project-number">05</span>
-          <span class="project-title">Project 05</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-        <button
-          class="project-row"
-          data-project="06"
-          data-title="Project 06"
-          data-category="Manufacturing"
-        >
-          <span class="project-number">06</span>
-          <span class="project-title">Project 06</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-        <button
-          class="project-row"
-          data-project="07"
-          data-title="Project 07"
-          data-category="Data"
-        >
-          <span class="project-number">07</span>
-          <span class="project-title">Project 07</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-        <button
-          class="project-row"
-          data-project="08"
-          data-title="Project 08"
-          data-category="Systems"
-        >
-          <span class="project-number">08</span>
-          <span class="project-title">Project 08</span>
-          <span class="project-type">COMING SOON</span>
-          <span class="project-arrow">↗</span>
-        </button>
-
-      </div>
-    </section>
-
-    <footer>
-      <a href="mailto:Lakshman.Sahaj@gmail.com">Lakshman.Sahaj@gmail.com ↗</a>
-      <span>Atlanta, GA</span>
-      <span>© <span id="year"></span> Lakshman Sahaj</span>
-    </footer>
-
-  </main>
-
-  <section class="project-panel" id="projectPanel">
-    <div class="project-panel-inner">
-      <button class="project-back" id="projectBack">← Back</button>
-
-      <div class="project-panel-header">
-        <p class="project-panel-number" id="panelNumber">01</p>
-        <p class="project-panel-category" id="panelCategory">
+        <p class="project-page-category" id="projectPageCategory">
           SOFTWARE / ENGINEERING
         </p>
+
+        <h2 class="project-page-title" id="projectPageTitle">
+          Project 01
+        </h2>
+
       </div>
 
-      <h2 class="project-panel-title" id="panelTitle">Project 01</h2>
+      <div class="project-page-canvas">
 
-      <div class="project-panel-body">
-        <div class="project-placeholder">PROJECT CONTENT</div>
-
-        <div class="project-panel-copy">
-          <p class="project-panel-label">OVERVIEW</p>
-
-          <p>
-            This project is currently in development. Full process, visuals,
-            technical details, and results will be added here soon.
-          </p>
+        <div class="project-page-placeholder">
+          PROJECT VISUAL / MEDIA
         </div>
+
+        <div class="project-page-overview">
+
+          <div>
+            <p class="project-page-label">OVERVIEW</p>
+
+            <p class="project-page-copy">
+              This project is currently in development.
+              Full process, visuals, technical details, and results
+              will be added here soon.
+            </p>
+          </div>
+
+          <div>
+            <p class="project-page-label">STATUS</p>
+
+            <p class="project-page-copy">
+              Coming soon.
+            </p>
+          </div>
+
+        </div>
+
       </div>
+
     </div>
+
   </section>
 
   <script src="script.js"></script>
+
 </body>
 </html>
