@@ -1,1 +1,19 @@
-document.getElementById("year").textContent=new Date().getFullYear();const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(!reduceMotion){const items=document.querySelectorAll(".project-card");items.forEach(i=>{i.style.opacity="0";i.style.transform="translateY(24px)";i.style.transition="opacity 650ms ease, transform 650ms ease"});const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.style.opacity="1";entry.target.style.transform="translateY(0)";observer.unobserve(entry.target)}})},{threshold:.12});items.forEach(i=>observer.observe(i));}
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+/*
+  Prevent placeholder projects from
+  jumping to the top of the page.
+*/
+document
+  .querySelectorAll(".project-row.coming")
+  .forEach((link) => {
+
+    link.addEventListener(
+      "click",
+      (event) => {
+        event.preventDefault();
+      }
+    );
+
+  });
