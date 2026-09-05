@@ -19,6 +19,18 @@ const projectPageTitle =
 const projectPageCategory =
   document.getElementById("projectPageCategory");
 
+const projectPageDeck =
+  document.getElementById("projectPageDeck");
+
+const projectTechRow =
+  document.getElementById("projectTechRow");
+
+const projectCaseStudy =
+  document.getElementById("projectCaseStudy");
+
+const projectPlaceholderCanvas =
+  document.getElementById("projectPlaceholderCanvas");
+
 document
   .querySelectorAll(".project-row")
   .forEach((project) => {
@@ -26,6 +38,9 @@ document
     project.addEventListener(
       "click",
       () => {
+
+        const isAircraftProject =
+          project.dataset.project === "01";
 
         projectPageIndex.textContent =
           project.dataset.project;
@@ -35,6 +50,18 @@ document
 
         projectPageCategory.textContent =
           project.dataset.category.toUpperCase();
+
+        projectCaseStudy.hidden =
+          !isAircraftProject;
+
+        projectPlaceholderCanvas.hidden =
+          isAircraftProject;
+
+        projectPageDeck.hidden =
+          !isAircraftProject;
+
+        projectTechRow.hidden =
+          !isAircraftProject;
 
         siteShell.classList.add("project-open");
 
