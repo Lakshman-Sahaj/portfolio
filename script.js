@@ -1,6 +1,7 @@
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
+
 const siteShell =
   document.getElementById("siteShell");
 
@@ -19,17 +20,18 @@ const projectPageTitle =
 const projectPageCategory =
   document.getElementById("projectPageCategory");
 
-const projectPageDeck =
-  document.getElementById("projectPageDeck");
-
-const projectTechRow =
-  document.getElementById("projectTechRow");
-
 const projectCaseStudy =
   document.getElementById("projectCaseStudy");
 
 const projectPlaceholderCanvas =
   document.getElementById("projectPlaceholderCanvas");
+
+const placeholderTitle =
+  document.getElementById("placeholderTitle");
+
+const placeholderCategory =
+  document.getElementById("placeholderCategory");
+
 
 document
   .querySelectorAll(".project-row")
@@ -42,38 +44,61 @@ document
         const isAircraftProject =
           project.dataset.project === "01";
 
+
         projectPageIndex.textContent =
           project.dataset.project;
 
-        projectPageTitle.textContent =
-          project.dataset.title;
 
-        projectPageCategory.textContent =
-          project.dataset.category.toUpperCase();
+        if (isAircraftProject) {
 
-        projectCaseStudy.hidden =
-          !isAircraftProject;
+          projectCaseStudy.hidden =
+            false;
 
-        projectPlaceholderCanvas.hidden =
-          isAircraftProject;
+          projectPlaceholderCanvas.hidden =
+            true;
 
-        projectPageDeck.hidden =
-          !isAircraftProject;
+          projectPageTitle.textContent =
+            project.dataset.title;
 
-        projectTechRow.hidden =
-          !isAircraftProject;
+          projectPageCategory.textContent =
+            project.dataset.category.toUpperCase();
 
-        siteShell.classList.add("project-open");
+        } else {
 
-        projectPage.classList.add("open");
+          projectCaseStudy.hidden =
+            true;
+
+          projectPlaceholderCanvas.hidden =
+            false;
+
+          placeholderTitle.textContent =
+            project.dataset.title;
+
+          placeholderCategory.textContent =
+            project.dataset.category.toUpperCase();
+
+        }
+
+
+        siteShell.classList.add(
+          "project-open"
+        );
+
+
+        projectPage.classList.add(
+          "open"
+        );
+
 
         projectPage.setAttribute(
           "aria-hidden",
           "false"
         );
 
+
         document.body.style.overflow =
           "hidden";
+
 
         projectPage.scrollTop = 0;
 
@@ -82,30 +107,36 @@ document
 
   });
 
+
 function closeProject() {
 
   siteShell.classList.remove(
     "project-open"
   );
 
+
   projectPage.classList.remove(
     "open"
   );
+
 
   projectPage.setAttribute(
     "aria-hidden",
     "true"
   );
 
+
   document.body.style.overflow =
     "";
 
 }
 
+
 projectBack.addEventListener(
   "click",
   closeProject
 );
+
 
 document.addEventListener(
   "keydown",
@@ -115,7 +146,9 @@ document.addEventListener(
       event.key === "Escape" &&
       projectPage.classList.contains("open")
     ) {
+
       closeProject();
+
     }
 
   }
