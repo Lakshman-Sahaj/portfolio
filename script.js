@@ -1,59 +1,95 @@
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
-const projectPanel =
-  document.getElementById("projectPanel");
+const siteShell =
+  document.getElementById("siteShell");
+
+const projectPage =
+  document.getElementById("projectPage");
 
 const projectBack =
   document.getElementById("projectBack");
 
-const panelNumber =
-  document.getElementById("panelNumber");
+const projectPageIndex =
+  document.getElementById("projectPageIndex");
 
-const panelTitle =
-  document.getElementById("panelTitle");
+const projectPageTitle =
+  document.getElementById("projectPageTitle");
 
-const panelCategory =
-  document.getElementById("panelCategory");
+const projectPageCategory =
+  document.getElementById("projectPageCategory");
 
 document
   .querySelectorAll(".project-row")
   .forEach((project) => {
-    project.addEventListener("click", () => {
-      panelNumber.textContent =
-        project.dataset.project;
 
-      panelTitle.textContent =
-        project.dataset.title;
+    project.addEventListener(
+      "click",
+      () => {
 
-      panelCategory.textContent =
-        project.dataset.category.toUpperCase();
+        projectPageIndex.textContent =
+          project.dataset.project;
 
-      projectPanel.classList.add("open");
+        projectPageTitle.textContent =
+          project.dataset.title;
 
-      document.body.style.overflow =
-        "hidden";
-    });
+        projectPageCategory.textContent =
+          project.dataset.category.toUpperCase();
+
+        siteShell.classList.add("project-open");
+
+        projectPage.classList.add("open");
+
+        projectPage.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+        document.body.style.overflow =
+          "hidden";
+
+        projectPage.scrollTop = 0;
+
+      }
+    );
+
   });
+
+function closeProject() {
+
+  siteShell.classList.remove(
+    "project-open"
+  );
+
+  projectPage.classList.remove(
+    "open"
+  );
+
+  projectPage.setAttribute(
+    "aria-hidden",
+    "true"
+  );
+
+  document.body.style.overflow =
+    "";
+
+}
 
 projectBack.addEventListener(
   "click",
-  () => {
-    projectPanel.classList.remove("open");
-
-    document.body.style.overflow =
-      "";
-  }
+  closeProject
 );
 
 document.addEventListener(
   "keydown",
   (event) => {
-    if (event.key === "Escape") {
-      projectPanel.classList.remove("open");
 
-      document.body.style.overflow =
-        "";
+    if (
+      event.key === "Escape" &&
+      projectPage.classList.contains("open")
+    ) {
+      closeProject();
     }
+
   }
 );
