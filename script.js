@@ -162,51 +162,146 @@ const cursorDot =
 const cursorRing =
   document.getElementById("cursorRing");
 
+const cometCursor =
+  document.getElementById("cometCursor");
 
-const supportsFinePointer =
-  window.matchMedia(
-    "(pointer: fine)"
-  ).matches;
+const cometDust =
+  Array.from(
+    document.querySelectorAll("#cometDust span")
+  );
+
+const cursorChoices =
+  Array.from(
+    document.querySelectorAll(".cursor-choice")
+  );
+
+const cursorModes =
+  ["orbit", "comet", "native"];
+
+const finePointerQuery =
+  window.matchMedia("(pointer: fine)");
+
+let selectedCursor = "orbit";
+
+try {
+
+  const savedCursor =
+    window.localStorage.getItem("portfolio-cursor");
+
+  if (cursorModes.includes(savedCursor)) {
+    selectedCursor = savedCursor;
+  }
+
+} catch (error) {
+  selectedCursor = "orbit";
+}
+
+let activeCursor = "native";
+let mouseX = 0;
+let mouseY = 0;
+let ringX = 0;
+let ringY = 0;
+let pointerStarted = false;
+
+const dustPositions =
+  cometDust.map(() => ({ x: 0, y: 0 }));
+
+
+function setCursorMode(mode, saveChoice = true) {
+
+  const requestedMode =
+    cursorModes.includes(mode) ? mode : "orbit";
+
+  selectedCursor = requestedMode;
+  activeCursor =
+    finePointerQuery.matches ? requestedMode : "native";
+
+  document.body.classList.remove(
+    "cursor-mode-orbit",
+    "cursor-mode-comet",
+    "cursor-mode-native",
+    "cursor-active"
+  );
+
+  document.body.classList.add(
+    `cursor-mode-${activeCursor}`
+  );
+
+  document.documentElement.classList.toggle(
+    "custom-cursor-enabled",
+    activeCursor !== "native"
+  );
+
+  cursorChoices.forEach((choice) => {
+    choice.setAttribute(
+      "aria-pressed",
+      String(choice.dataset.cursor === selectedCursor)
+    );
+  });
+
+  if (
+    pointerStarted &&
+    activeCursor !== "native"
+  ) {
+    document.body.classList.add("cursor-active");
+  }
+
+  if (saveChoice) {
+    try {
+      window.localStorage.setItem(
+        "portfolio-cursor",
+        selectedCursor
+      );
+    } catch (error) {
+      // The cursor still works when storage is unavailable.
+    }
+  }
+
+}
+
+
+cursorChoices.forEach((choice) => {
+  choice.addEventListener("click", () => {
+    setCursorMode(choice.dataset.cursor);
+  });
+});
 
 
 if (
-  supportsFinePointer &&
   cursorDot &&
-  cursorRing
+  cursorRing &&
+  cometCursor
 ) {
 
-  document.documentElement.classList.add(
-    "custom-cursor-enabled"
-  );
-
-  let mouseX = 0;
-  let mouseY = 0;
-
-  let ringX = 0;
-  let ringY = 0;
+  setCursorMode(selectedCursor, false);
 
 
   document.addEventListener(
     "mousemove",
     (event) => {
 
-      mouseX =
-        event.clientX;
+      mouseX = event.clientX;
+      mouseY = event.clientY;
 
-      mouseY =
-        event.clientY;
+      cursorDot.style.left = `${mouseX}px`;
+      cursorDot.style.top = `${mouseY}px`;
+      cometCursor.style.left = `${mouseX}px`;
+      cometCursor.style.top = `${mouseY}px`;
 
+      if (!pointerStarted) {
+        pointerStarted = true;
+        ringX = mouseX;
+        ringY = mouseY;
 
-      cursorDot.style.left =
-        `${mouseX}px`;
+        dustPositions.forEach((point) => {
+          point.x = mouseX;
+          point.y = mouseY;
+        });
+      }
 
-      cursorDot.style.top =
-        `${mouseY}px`;
-
-
-      document.body.classList.add(
-        "cursor-active"
-      );
+      if (activeCursor !== "native") {
+        document.body.classList.add("cursor-active");
+      }
 
     }
   );
@@ -217,56 +312,27 @@ if (
     (event) => {
 
       if (!event.relatedTarget) {
-
-        document.body.classList.remove(
-          "cursor-active"
-        );
-
+        document.body.classList.remove("cursor-active");
       }
-
     }
   );
 
 
-  const interactiveElements =
-    document.querySelectorAll(
-      "a, button, summary"
-    );
+  document
+    .querySelectorAll("a, button, summary")
+    .forEach((element) => {
 
+      element.addEventListener("mouseenter", () => {
+        cursorRing.classList.add("is-hovering");
+        cursorDot.classList.add("is-hovering");
+        cometCursor.classList.add("is-hovering");
+      });
 
-  interactiveElements.forEach(
-    (element) => {
-
-      element.addEventListener(
-        "mouseenter",
-        () => {
-
-          cursorRing.classList.add(
-            "is-hovering"
-          );
-
-          cursorDot.classList.add(
-            "is-hovering"
-          );
-
-        }
-      );
-
-
-      element.addEventListener(
-        "mouseleave",
-        () => {
-
-          cursorRing.classList.remove(
-            "is-hovering"
-          );
-
-          cursorDot.classList.remove(
-            "is-hovering"
-          );
-
-        }
-      );
+      element.addEventListener("mouseleave", () => {
+        cursorRing.classList.remove("is-hovering");
+        cursorDot.classList.remove("is-hovering");
+        cometCursor.classList.remove("is-hovering");
+      });
 
     }
   );
@@ -274,27 +340,42 @@ if (
 
   function animateCursor() {
 
-    ringX +=
-      (mouseX - ringX) * 0.18;
+    if (pointerStarted) {
 
-    ringY +=
-      (mouseY - ringY) * 0.18;
+      ringX += (mouseX - ringX) * 0.18;
+      ringY += (mouseY - ringY) * 0.18;
 
+      cursorRing.style.left = `${ringX}px`;
+      cursorRing.style.top = `${ringY}px`;
 
-    cursorRing.style.left =
-      `${ringX}px`;
+      dustPositions.forEach((point, index) => {
 
-    cursorRing.style.top =
-      `${ringY}px`;
+        const target =
+          index === 0
+            ? { x: mouseX, y: mouseY }
+            : dustPositions[index - 1];
 
+        const ease = index === 0 ? 0.24 : 0.3;
 
-    requestAnimationFrame(
-      animateCursor
-    );
+        point.x += (target.x - point.x) * ease;
+        point.y += (target.y - point.y) * ease;
+
+        cometDust[index].style.left = `${point.x}px`;
+        cometDust[index].style.top = `${point.y}px`;
+
+      });
+
+    }
+
+    requestAnimationFrame(animateCursor);
 
   }
 
 
   animateCursor();
+
+  finePointerQuery.addEventListener("change", () => {
+    setCursorMode(selectedCursor, false);
+  });
 
 }
