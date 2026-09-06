@@ -162,12 +162,12 @@ const cursorDot =
 const cursorRing =
   document.getElementById("cursorRing");
 
-const cometCursor =
-  document.getElementById("cometCursor");
+const rocketCursor =
+  document.getElementById("rocketCursor");
 
-const cometDust =
+const rocketExhaust =
   Array.from(
-    document.querySelectorAll("#cometDust span")
+    document.querySelectorAll("#rocketExhaust span")
   );
 
 const cursorChoices =
@@ -176,7 +176,7 @@ const cursorChoices =
   );
 
 const cursorModes =
-  ["orbit", "comet", "native"];
+  ["orbit", "rocket", "native"];
 
 const finePointerQuery =
   window.matchMedia("(pointer: fine)");
@@ -188,7 +188,9 @@ try {
   const savedCursor =
     window.localStorage.getItem("portfolio-cursor");
 
-  if (cursorModes.includes(savedCursor)) {
+  if (savedCursor === "comet") {
+    selectedCursor = "rocket";
+  } else if (cursorModes.includes(savedCursor)) {
     selectedCursor = savedCursor;
   }
 
@@ -204,7 +206,7 @@ let ringY = 0;
 let pointerStarted = false;
 
 const dustPositions =
-  cometDust.map(() => ({ x: 0, y: 0 }));
+  rocketExhaust.map(() => ({ x: 0, y: 0 }));
 
 
 function setCursorMode(mode, saveChoice = true) {
@@ -218,7 +220,7 @@ function setCursorMode(mode, saveChoice = true) {
 
   document.body.classList.remove(
     "cursor-mode-orbit",
-    "cursor-mode-comet",
+    "cursor-mode-rocket",
     "cursor-mode-native",
     "cursor-active"
   );
@@ -270,7 +272,7 @@ cursorChoices.forEach((choice) => {
 if (
   cursorDot &&
   cursorRing &&
-  cometCursor
+  rocketCursor
 ) {
 
   setCursorMode(selectedCursor, false);
@@ -280,13 +282,27 @@ if (
     "mousemove",
     (event) => {
 
+      const deltaX = event.clientX - mouseX;
+      const deltaY = event.clientY - mouseY;
+
+      if (
+        pointerStarted &&
+        Math.abs(deltaX) + Math.abs(deltaY) > 2
+      ) {
+        const angle =
+          Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+
+        rocketCursor.style.transform =
+          `translate(-50%, -50%) rotate(${angle}deg)`;
+      }
+
       mouseX = event.clientX;
       mouseY = event.clientY;
 
       cursorDot.style.left = `${mouseX}px`;
       cursorDot.style.top = `${mouseY}px`;
-      cometCursor.style.left = `${mouseX}px`;
-      cometCursor.style.top = `${mouseY}px`;
+      rocketCursor.style.left = `${mouseX}px`;
+      rocketCursor.style.top = `${mouseY}px`;
 
       if (!pointerStarted) {
         pointerStarted = true;
@@ -325,13 +341,13 @@ if (
       element.addEventListener("mouseenter", () => {
         cursorRing.classList.add("is-hovering");
         cursorDot.classList.add("is-hovering");
-        cometCursor.classList.add("is-hovering");
+        rocketCursor.classList.add("is-hovering");
       });
 
       element.addEventListener("mouseleave", () => {
         cursorRing.classList.remove("is-hovering");
         cursorDot.classList.remove("is-hovering");
-        cometCursor.classList.remove("is-hovering");
+        rocketCursor.classList.remove("is-hovering");
       });
 
     }
@@ -360,8 +376,8 @@ if (
         point.x += (target.x - point.x) * ease;
         point.y += (target.y - point.y) * ease;
 
-        cometDust[index].style.left = `${point.x}px`;
-        cometDust[index].style.top = `${point.y}px`;
+        rocketExhaust[index].style.left = `${point.x}px`;
+        rocketExhaust[index].style.top = `${point.y}px`;
 
       });
 

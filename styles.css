@@ -308,27 +308,26 @@ body::after {
   background: currentColor;
 }
 
-.cursor-icon-comet::before {
+.cursor-icon-rocket::before {
   content: "";
   position: absolute;
-  top: 3px;
+  top: 4px;
   right: 1px;
-  width: 7px;
-  height: 7px;
-  border-radius: 58% 42% 52% 48%;
+  width: 9px;
+  height: 6px;
   background: currentColor;
-  transform: rotate(-18deg);
+  clip-path: polygon(0 12%, 68% 12%, 100% 50%, 68% 88%, 0 88%, 20% 50%);
 }
 
-.cursor-icon-comet::after {
+.cursor-icon-rocket::after {
   content: "";
   position: absolute;
   top: 6px;
   left: 1px;
-  width: 5px;
+  width: 4px;
   height: 1px;
   background: currentColor;
-  box-shadow: 2px -3px 0 -0.2px currentColor, -1px 3px 0 -0.2px currentColor;
+  box-shadow: 1px -2px 0 -0.2px currentColor, 0 2px 0 -0.2px currentColor;
   opacity: .72;
 }
 
@@ -1151,8 +1150,8 @@ footer a {
 
 .custom-cursor-dot,
 .custom-cursor-ring,
-.comet-cursor,
-.comet-dust span {
+.rocket-cursor,
+.rocket-exhaust span {
   position: fixed;
   top: 0;
   left: 0;
@@ -1195,30 +1194,36 @@ body.cursor-mode-orbit.cursor-active .custom-cursor-ring {
   height: 4px;
 }
 
-.comet-cursor {
-  width: 12px;
-  height: 9px;
-  border: 1px solid rgba(242,241,235,.86);
-  border-radius: 58% 42% 53% 47%;
-  background: var(--accent);
+.rocket-cursor {
+  width: 19px;
+  height: 12px;
   box-shadow: 0 0 9px rgba(214,238,71,.42);
   opacity: 0;
-  transform: translate(-50%, -50%) rotate(-18deg);
+  transform: translate(-50%, -50%);
   transition: width .16s ease, height .16s ease, opacity .14s ease;
 }
 
-.comet-cursor::after {
+.rocket-cursor::before {
   content: "";
   position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: rgba(2,3,3,.58);
+  inset: 2px 0 2px 2px;
+  background: var(--text);
+  clip-path: polygon(0 8%, 70% 8%, 100% 50%, 70% 92%, 0 92%, 18% 50%);
 }
 
-.comet-dust span {
+.rocket-cursor::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: inset 0 0 0 1px rgba(2,3,3,.48);
+}
+
+.rocket-exhaust span {
   width: 3px;
   height: 3px;
   border-radius: 50%;
@@ -1227,30 +1232,30 @@ body.cursor-mode-orbit.cursor-active .custom-cursor-ring {
   opacity: 0;
 }
 
-.comet-dust span:nth-child(2n) {
+.rocket-exhaust span:nth-child(2n) {
   width: 2px;
   height: 2px;
   background: rgba(242,241,235,.82);
 }
 
-.comet-dust span:nth-child(3n) {
+.rocket-exhaust span:nth-child(3n) {
   width: 1px;
   height: 1px;
 }
 
-body.cursor-mode-comet.cursor-active .comet-cursor { opacity: 1; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(1) { opacity: .72; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(2) { opacity: .62; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(3) { opacity: .54; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(4) { opacity: .46; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(5) { opacity: .36; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(6) { opacity: .28; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(7) { opacity: .20; }
-body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(8) { opacity: .12; }
+body.cursor-mode-rocket.cursor-active .rocket-cursor { opacity: 1; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(1) { opacity: .72; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(2) { opacity: .62; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(3) { opacity: .54; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(4) { opacity: .46; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(5) { opacity: .36; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(6) { opacity: .28; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(7) { opacity: .20; }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(8) { opacity: .12; }
 
-.comet-cursor.is-hovering {
-  width: 16px;
-  height: 12px;
+.rocket-cursor.is-hovering {
+  width: 23px;
+  height: 15px;
 }
 
 @media (pointer: fine) {
@@ -1266,8 +1271,8 @@ body.cursor-mode-comet.cursor-active .comet-dust span:nth-child(8) { opacity: .1
   .cursor-picker,
   .custom-cursor-dot,
   .custom-cursor-ring,
-  .comet-cursor,
-  .comet-dust {
+  .rocket-cursor,
+  .rocket-exhaust {
     display: none;
   }
 }
