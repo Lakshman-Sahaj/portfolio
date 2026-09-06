@@ -210,14 +210,14 @@ let rocketAngle = 0;
 
 const trailPoints = [];
 
-const trailLifetime = 2400;
+const trailLifetime = 1500;
 
 function sizeExhaustCanvas() {
 
   if (!rocketExhaust || !exhaustContext) return;
 
   const pixelRatio =
-    Math.min(window.devicePixelRatio || 1, 2);
+    Math.min(window.devicePixelRatio || 1, 1.5);
 
   rocketExhaust.width =
     Math.round(window.innerWidth * pixelRatio);
@@ -241,7 +241,7 @@ function addTrailPath(startX, startY, endX, endY) {
     Math.hypot(endX - startX, endY - startY);
 
   const steps =
-    Math.max(Math.ceil(distance / 4), 1);
+    Math.max(Math.ceil(distance / 7), 1);
 
   const createdAt = performance.now();
 
@@ -257,7 +257,7 @@ function addTrailPath(startX, startY, endX, endY) {
   }
 
   trailPoints.length =
-    Math.min(trailPoints.length, 520);
+    Math.min(trailPoints.length, 220);
 
 }
 
@@ -353,9 +353,6 @@ if (
         rocketAngle =
           Math.atan2(deltaY, deltaX);
 
-        rocketCursor.style.transform =
-          `translate(-50%, -50%) rotate(${rocketAngle * 180 / Math.PI}deg)`;
-
         const directionX = Math.cos(rocketAngle);
         const directionY = Math.sin(rocketAngle);
         const nozzleX = event.clientX - directionX * 12;
@@ -380,8 +377,8 @@ if (
 
       cursorDot.style.left = `${mouseX}px`;
       cursorDot.style.top = `${mouseY}px`;
-      rocketCursor.style.left = `${mouseX}px`;
-      rocketCursor.style.top = `${mouseY}px`;
+      rocketCursor.style.transform =
+        `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%) rotate(${rocketAngle * 180 / Math.PI}deg)`;
 
       if (!pointerStarted) {
         pointerStarted = true;
@@ -487,7 +484,7 @@ if (
           const fade = Math.max(1 - age / trailLifetime, 0);
           const proximity = 1 - index / trailPoints.length;
           const baseWidth =
-            1.2 + Math.pow(proximity, 2.2) * 10.8;
+            0.9 + Math.pow(proximity, 2.2) * 5.1;
 
           exhaustContext.beginPath();
           exhaustContext.moveTo(older.x, older.y);
@@ -496,8 +493,8 @@ if (
           exhaustContext.strokeStyle =
             `rgba(214, 238, 71, ${fade * (0.2 + proximity * 0.68)})`;
           exhaustContext.shadowColor =
-            `rgba(214, 238, 71, ${fade * 0.55})`;
-          exhaustContext.shadowBlur = 3 + proximity * 8;
+            `rgba(214, 238, 71, ${fade * 0.38})`;
+          exhaustContext.shadowBlur = 2 + proximity * 4;
           exhaustContext.stroke();
         }
       }

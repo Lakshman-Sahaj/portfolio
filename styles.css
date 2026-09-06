@@ -1200,6 +1200,7 @@ body.cursor-mode-orbit.cursor-active .custom-cursor-ring {
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: width .16s ease, height .16s ease, opacity .14s ease;
+  will-change: transform;
 }
 
 .rocket-cursor::before {
