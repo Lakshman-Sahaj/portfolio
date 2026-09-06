@@ -1270,14 +1270,14 @@ body.cursor-mode-orbit.cursor-active .custom-cursor-ring {
 }
 
 body.cursor-mode-rocket.cursor-active .rocket-cursor { opacity: 1; }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(1) { opacity: calc(.58 * var(--exhaust-strength, .7)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(2) { opacity: calc(.50 * var(--exhaust-strength, .7)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(3) { opacity: calc(.43 * var(--exhaust-strength, .7)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(4) { opacity: calc(.36 * var(--exhaust-strength, .7)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(5) { opacity: calc(.29 * var(--exhaust-strength, .7)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(6) { opacity: calc(.22 * var(--exhaust-strength, .7)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(7) { opacity: calc(.15 * var(--exhaust-strength, .7)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(8) { opacity: calc(.09 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(1) { opacity: calc(.72 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(2) { opacity: calc(.62 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(3) { opacity: calc(.54 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(4) { opacity: calc(.46 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(5) { opacity: calc(.36 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(6) { opacity: calc(.28 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(7) { opacity: calc(.20 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(8) { opacity: calc(.12 * var(--exhaust-strength, .9)); }
 
 .rocket-cursor.is-hovering {
   width: 23px;
