@@ -170,11 +170,6 @@ const rocketExhaust =
     document.querySelectorAll("#rocketExhaust span")
   );
 
-const rocketBurst =
-  Array.from(
-    document.querySelectorAll("#rocketBurst span")
-  );
-
 const cursorChoices =
   Array.from(
     document.querySelectorAll(".cursor-choice")
@@ -210,95 +205,9 @@ let ringX = 0;
 let ringY = 0;
 let pointerStarted = false;
 let pointerSpeed = 0;
-let rocketAngle = 0;
-let lastBurstAt = 0;
 
 const dustPositions =
   rocketExhaust.map(() => ({ x: 0, y: 0 }));
-
-const burstParticles =
-  rocketBurst.map((element) => ({
-    element,
-    active: false,
-    x: 0,
-    y: 0,
-    velocityX: 0,
-    velocityY: 0,
-    life: 0,
-    maxLife: 0,
-    size: 1,
-    sideX: 0,
-    sideY: 0,
-    phase: 0,
-    spin: 0,
-    radius: 0
-  }));
-
-
-function emitRocketBurst(speed) {
-
-  const now = performance.now();
-
-  if (
-    activeCursor !== "rocket" ||
-    now - lastBurstAt < 65
-  ) {
-    return;
-  }
-
-  lastBurstAt = now;
-
-  const intensity =
-    Math.min((speed - 30) / 34, 1);
-
-  const particleCount =
-    Math.round(18 + intensity * 10);
-
-  const backwardX = -Math.cos(rocketAngle);
-  const backwardY = -Math.sin(rocketAngle);
-
-  const sideX = -backwardY;
-  const sideY = backwardX;
-
-  burstParticles
-    .slice(0, particleCount)
-    .forEach((particle, index) => {
-
-      const force =
-        4 + Math.random() * (7 + intensity * 7);
-
-      particle.active = true;
-      particle.x = mouseX + backwardX * 10;
-      particle.y = mouseY + backwardY * 10;
-      particle.velocityX =
-        backwardX * force;
-      particle.velocityY =
-        backwardY * force;
-      particle.maxLife =
-        28 + Math.random() * (22 + intensity * 18);
-      particle.life = particle.maxLife;
-      particle.size =
-        1.5 + Math.random() * (3 + intensity * 2.5);
-      particle.sideX = sideX;
-      particle.sideY = sideY;
-      particle.phase =
-        Math.random() * Math.PI * 2;
-      particle.spin =
-        (0.16 + Math.random() * 0.2) *
-        (index % 2 === 0 ? 1 : -1);
-      particle.radius =
-        2 + Math.random() * (3 + intensity * 4);
-
-      particle.element.style.width = `${particle.size}px`;
-      particle.element.style.height = `${particle.size}px`;
-      particle.element.style.left = `${particle.x}px`;
-      particle.element.style.top = `${particle.y}px`;
-      particle.element.style.opacity =
-        String(0.55 + Math.random() * 0.45);
-
-    });
-
-}
 
 
 function setCursorMode(mode, saveChoice = true) {
@@ -351,13 +260,6 @@ function setCursorMode(mode, saveChoice = true) {
     }
   }
 
-  if (activeCursor !== "rocket") {
-    burstParticles.forEach((particle) => {
-      particle.active = false;
-      particle.element.style.opacity = "0";
-    });
-  }
-
 }
 
 
@@ -384,35 +286,24 @@ if (
       const deltaX = event.clientX - mouseX;
       const deltaY = event.clientY - mouseY;
 
-      const movementSpeed =
-        Math.min(Math.hypot(deltaX, deltaY), 64);
-
       pointerSpeed = Math.max(
         pointerSpeed,
-        movementSpeed
+        Math.min(Math.hypot(deltaX, deltaY), 48)
       );
 
       if (
         pointerStarted &&
         Math.abs(deltaX) + Math.abs(deltaY) > 2
       ) {
-        rocketAngle =
-          Math.atan2(deltaY, deltaX);
+        const angle =
+          Math.atan2(deltaY, deltaX) * 180 / Math.PI;
 
         rocketCursor.style.transform =
-          `translate(-50%, -50%) rotate(${rocketAngle * 180 / Math.PI}deg)`;
-
+          `translate(-50%, -50%) rotate(${angle}deg)`;
       }
 
       mouseX = event.clientX;
       mouseY = event.clientY;
-
-      if (
-        pointerStarted &&
-        movementSpeed > 30
-      ) {
-        emitRocketBurst(movementSpeed);
-      }
 
       cursorDot.style.left = `${mouseX}px`;
       cursorDot.style.top = `${mouseY}px`;
@@ -480,12 +371,12 @@ if (
 
       document.body.style.setProperty(
         "--exhaust-strength",
-        String(0.82 + speedRatio * 0.38)
+        String(0.55 + speedRatio * 1.05)
       );
 
       document.body.style.setProperty(
         "--exhaust-scale",
-        String(0.9 + speedRatio * 0.45)
+        String(0.7 + speedRatio * 0.75)
       );
 
       document.body.style.setProperty(
@@ -513,45 +404,6 @@ if (
 
         rocketExhaust[index].style.left = `${point.x}px`;
         rocketExhaust[index].style.top = `${point.y}px`;
-
-      });
-
-      burstParticles.forEach((particle) => {
-
-        if (!particle.active) {
-          return;
-        }
-
-        particle.x += particle.velocityX;
-        particle.y += particle.velocityY;
-        particle.velocityX *= 0.95;
-        particle.velocityY *= 0.95;
-        particle.phase += particle.spin;
-        particle.radius *= 1.012;
-        particle.life -= 1;
-
-        const lifeRatio =
-          Math.max(particle.life / particle.maxLife, 0);
-
-        const vortexOffset =
-          Math.cos(particle.phase) * particle.radius;
-
-        const depth =
-          0.78 + (Math.sin(particle.phase) + 1) * 0.16;
-
-        particle.element.style.left =
-          `${particle.x + particle.sideX * vortexOffset}px`;
-        particle.element.style.top =
-          `${particle.y + particle.sideY * vortexOffset}px`;
-        particle.element.style.opacity =
-          String(lifeRatio * lifeRatio * depth);
-        particle.element.style.transform =
-          `translate(-50%, -50%) scale(${(0.55 + lifeRatio) * depth})`;
-
-        if (particle.life <= 0) {
-          particle.active = false;
-          particle.element.style.opacity = "0";
-        }
 
       });
 

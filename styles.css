@@ -1244,40 +1244,15 @@ body.cursor-mode-orbit.cursor-active .custom-cursor-ring {
   height: 1px;
 }
 
-.rocket-burst span {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99998;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  pointer-events: none;
-  background: var(--accent);
-  box-shadow: 0 0 7px rgba(214,238,71,.72);
-  opacity: 0;
-  transform: translate(-50%, -50%);
-  will-change: left, top, opacity, transform;
-}
-
-.rocket-burst span:nth-child(3n) {
-  background: var(--text);
-  box-shadow: 0 0 5px rgba(242,241,235,.62);
-}
-
-.rocket-burst span:nth-child(5n) {
-  border-radius: 1px;
-}
-
 body.cursor-mode-rocket.cursor-active .rocket-cursor { opacity: 1; }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(1) { opacity: calc(.72 * var(--exhaust-strength, .9)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(2) { opacity: calc(.62 * var(--exhaust-strength, .9)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(3) { opacity: calc(.54 * var(--exhaust-strength, .9)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(4) { opacity: calc(.46 * var(--exhaust-strength, .9)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(5) { opacity: calc(.36 * var(--exhaust-strength, .9)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(6) { opacity: calc(.28 * var(--exhaust-strength, .9)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(7) { opacity: calc(.20 * var(--exhaust-strength, .9)); }
-body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(8) { opacity: calc(.12 * var(--exhaust-strength, .9)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(1) { opacity: calc(.58 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(2) { opacity: calc(.50 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(3) { opacity: calc(.43 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(4) { opacity: calc(.36 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(5) { opacity: calc(.29 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(6) { opacity: calc(.22 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(7) { opacity: calc(.15 * var(--exhaust-strength, .7)); }
+body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(8) { opacity: calc(.09 * var(--exhaust-strength, .7)); }
 
 .rocket-cursor.is-hovering {
   width: 23px;
@@ -1298,8 +1273,7 @@ body.cursor-mode-rocket.cursor-active .rocket-exhaust span:nth-child(8) { opacit
   .custom-cursor-dot,
   .custom-cursor-ring,
   .rocket-cursor,
-  .rocket-exhaust,
-  .rocket-burst {
+  .rocket-exhaust {
     display: none;
   }
 }
