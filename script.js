@@ -204,6 +204,7 @@ let mouseY = 0;
 let ringX = 0;
 let ringY = 0;
 let pointerStarted = false;
+let pointerSpeed = 0;
 
 const dustPositions =
   rocketExhaust.map(() => ({ x: 0, y: 0 }));
@@ -285,6 +286,11 @@ if (
       const deltaX = event.clientX - mouseX;
       const deltaY = event.clientY - mouseY;
 
+      pointerSpeed = Math.max(
+        pointerSpeed,
+        Math.min(Math.hypot(deltaX, deltaY), 48)
+      );
+
       if (
         pointerStarted &&
         Math.abs(deltaX) + Math.abs(deltaY) > 2
@@ -357,6 +363,26 @@ if (
   function animateCursor() {
 
     if (pointerStarted) {
+
+      pointerSpeed *= 0.88;
+
+      const speedRatio =
+        Math.min(pointerSpeed / 28, 1);
+
+      document.body.style.setProperty(
+        "--exhaust-strength",
+        String(0.55 + speedRatio * 1.05)
+      );
+
+      document.body.style.setProperty(
+        "--exhaust-scale",
+        String(0.7 + speedRatio * 0.75)
+      );
+
+      document.body.style.setProperty(
+        "--rocket-glow",
+        `${3 + speedRatio * 5}px`
+      );
 
       ringX += (mouseX - ringX) * 0.18;
       ringY += (mouseY - ringY) * 0.18;
