@@ -1094,10 +1094,10 @@ footer a {
 }
 
 @media (pointer: fine) {
-  body,
-  a,
-  button,
-  summary {
+  .custom-cursor-enabled body,
+  .custom-cursor-enabled a,
+  .custom-cursor-enabled button,
+  .custom-cursor-enabled summary {
     cursor: none;
   }
 }

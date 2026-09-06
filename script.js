@@ -175,6 +175,10 @@ if (
   cursorRing
 ) {
 
+  document.documentElement.classList.add(
+    "custom-cursor-enabled"
+  );
+
   let mouseX = 0;
   let mouseY = 0;
 
@@ -235,17 +239,6 @@ if (
       cursorRing.classList.remove(
         "is-visible"
       );
-
-    }
-  );
-
-
-  document.addEventListener(
-    "mouseenter",
-    () => {
-
-      cursorVisible =
-        true;
 
     }
   );
