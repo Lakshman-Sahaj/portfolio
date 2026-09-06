@@ -210,14 +210,14 @@ let rocketAngle = 0;
 
 const trailPoints = [];
 
-const trailLifetime = 1500;
+const trailLifetime = 1050;
 
 function sizeExhaustCanvas() {
 
   if (!rocketExhaust || !exhaustContext) return;
 
   const pixelRatio =
-    Math.min(window.devicePixelRatio || 1, 1.5);
+    Math.min(window.devicePixelRatio || 1, 1.25);
 
   rocketExhaust.width =
     Math.round(window.innerWidth * pixelRatio);
@@ -241,7 +241,7 @@ function addTrailPath(startX, startY, endX, endY) {
     Math.hypot(endX - startX, endY - startY);
 
   const steps =
-    Math.max(Math.ceil(distance / 7), 1);
+    Math.max(Math.ceil(distance / 6), 1);
 
   const createdAt = performance.now();
 
@@ -257,7 +257,7 @@ function addTrailPath(startX, startY, endX, endY) {
   }
 
   trailPoints.length =
-    Math.min(trailPoints.length, 220);
+    Math.min(trailPoints.length, 130);
 
 }
 
@@ -436,10 +436,16 @@ if (
 
     if (pointerStarted) {
 
-      pointerSpeed *= 0.88;
+      pointerSpeed *= 0.84;
 
       const speedRatio =
         Math.min(pointerSpeed / 28, 1);
+
+      const fastBoost =
+        Math.max(
+          Math.min((pointerSpeed - 38) / 10, 1),
+          0
+        );
 
       document.body.style.setProperty(
         "--rocket-glow",
@@ -473,28 +479,63 @@ if (
         exhaustContext.lineCap = "round";
         exhaustContext.lineJoin = "round";
 
-        for (
-          let index = trailPoints.length - 1;
-          index > 0;
-          index -= 1
-        ) {
-          const older = trailPoints[index];
-          const newer = trailPoints[index - 1];
-          const age = now - newer.createdAt;
+        const bandCount = 7;
+        const segmentCount = trailPoints.length - 1;
+
+        for (let band = 0; band < bandCount; band += 1) {
+          const olderIndex = Math.floor(
+            segmentCount * (1 - band / bandCount)
+          );
+          const newerIndex = Math.max(
+            Math.floor(
+              segmentCount * (1 - (band + 1) / bandCount)
+            ),
+            0
+          );
+
+          if (olderIndex <= newerIndex) continue;
+
+          const middleIndex =
+            Math.floor((olderIndex + newerIndex) / 2);
+          const age = now - trailPoints[middleIndex].createdAt;
           const fade = Math.max(1 - age / trailLifetime, 0);
-          const proximity = 1 - index / trailPoints.length;
+          const proximity = (band + 0.5) / bandCount;
           const baseWidth =
-            0.9 + Math.pow(proximity, 2.2) * 5.1;
+            0.65 +
+            Math.pow(proximity, 2.4) *
+              (1.45 + fastBoost * 3.5);
 
           exhaustContext.beginPath();
-          exhaustContext.moveTo(older.x, older.y);
-          exhaustContext.lineTo(newer.x, newer.y);
+          exhaustContext.moveTo(
+            trailPoints[olderIndex].x,
+            trailPoints[olderIndex].y
+          );
+
+          for (
+            let index = olderIndex - 1;
+            index > newerIndex;
+            index -= 1
+          ) {
+            const point = trailPoints[index];
+            const nextPoint = trailPoints[index - 1];
+            exhaustContext.quadraticCurveTo(
+              point.x,
+              point.y,
+              (point.x + nextPoint.x) / 2,
+              (point.y + nextPoint.y) / 2
+            );
+          }
+
+          exhaustContext.lineTo(
+            trailPoints[newerIndex].x,
+            trailPoints[newerIndex].y
+          );
           exhaustContext.lineWidth = baseWidth;
           exhaustContext.strokeStyle =
-            `rgba(214, 238, 71, ${fade * (0.2 + proximity * 0.68)})`;
+            `rgba(214, 238, 71, ${fade * (0.18 + proximity * 0.62)})`;
           exhaustContext.shadowColor =
-            `rgba(214, 238, 71, ${fade * 0.38})`;
-          exhaustContext.shadowBlur = 2 + proximity * 4;
+            `rgba(214, 238, 71, ${fade * 0.28})`;
+          exhaustContext.shadowBlur = 1.5 + proximity * 2.5;
           exhaustContext.stroke();
         }
       }
