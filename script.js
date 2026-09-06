@@ -166,9 +166,10 @@ const rocketCursor =
   document.getElementById("rocketCursor");
 
 const rocketExhaust =
-  Array.from(
-    document.querySelectorAll("#rocketExhaust span")
-  );
+  document.getElementById("rocketExhaust");
+
+const exhaustContext =
+  rocketExhaust?.getContext("2d");
 
 const cursorChoices =
   Array.from(
@@ -205,9 +206,60 @@ let ringX = 0;
 let ringY = 0;
 let pointerStarted = false;
 let pointerSpeed = 0;
+let rocketAngle = 0;
 
-const dustPositions =
-  rocketExhaust.map(() => ({ x: 0, y: 0 }));
+const trailPoints = [];
+
+const trailLifetime = 2400;
+
+function sizeExhaustCanvas() {
+
+  if (!rocketExhaust || !exhaustContext) return;
+
+  const pixelRatio =
+    Math.min(window.devicePixelRatio || 1, 2);
+
+  rocketExhaust.width =
+    Math.round(window.innerWidth * pixelRatio);
+  rocketExhaust.height =
+    Math.round(window.innerHeight * pixelRatio);
+
+  exhaustContext.setTransform(
+    pixelRatio,
+    0,
+    0,
+    pixelRatio,
+    0,
+    0
+  );
+
+}
+
+function addTrailPath(startX, startY, endX, endY) {
+
+  const distance =
+    Math.hypot(endX - startX, endY - startY);
+
+  const steps =
+    Math.max(Math.ceil(distance / 4), 1);
+
+  const createdAt = performance.now();
+
+  for (let step = 1; step <= steps; step += 1) {
+    const progress = step / steps;
+
+    trailPoints.unshift({
+      x: startX + (endX - startX) * progress,
+      y: startY + (endY - startY) * progress,
+      createdAt,
+      speed: Math.min(distance / 30, 1)
+    });
+  }
+
+  trailPoints.length =
+    Math.min(trailPoints.length, 520);
+
+}
 
 
 function setCursorMode(mode, saveChoice = true) {
@@ -273,10 +325,13 @@ cursorChoices.forEach((choice) => {
 if (
   cursorDot &&
   cursorRing &&
-  rocketCursor
+  rocketCursor &&
+  rocketExhaust &&
+  exhaustContext
 ) {
 
   setCursorMode(selectedCursor, false);
+  sizeExhaustCanvas();
 
 
   document.addEventListener(
@@ -295,11 +350,29 @@ if (
         pointerStarted &&
         Math.abs(deltaX) + Math.abs(deltaY) > 2
       ) {
-        const angle =
-          Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+        rocketAngle =
+          Math.atan2(deltaY, deltaX);
 
         rocketCursor.style.transform =
-          `translate(-50%, -50%) rotate(${angle}deg)`;
+          `translate(-50%, -50%) rotate(${rocketAngle * 180 / Math.PI}deg)`;
+
+        const directionX = Math.cos(rocketAngle);
+        const directionY = Math.sin(rocketAngle);
+        const nozzleX = event.clientX - directionX * 12;
+        const nozzleY = event.clientY - directionY * 12;
+
+        const previousPoint =
+          trailPoints[0] || {
+            x: mouseX - directionX * 12,
+            y: mouseY - directionY * 12
+          };
+
+        addTrailPath(
+          previousPoint.x,
+          previousPoint.y,
+          nozzleX,
+          nozzleY
+        );
       }
 
       mouseX = event.clientX;
@@ -315,9 +388,11 @@ if (
         ringX = mouseX;
         ringY = mouseY;
 
-        dustPositions.forEach((point) => {
-          point.x = mouseX;
-          point.y = mouseY;
+        trailPoints.unshift({
+          x: mouseX,
+          y: mouseY,
+          createdAt: performance.now(),
+          speed: 0
         });
       }
 
@@ -370,16 +445,6 @@ if (
         Math.min(pointerSpeed / 28, 1);
 
       document.body.style.setProperty(
-        "--exhaust-strength",
-        String(0.55 + speedRatio * 1.05)
-      );
-
-      document.body.style.setProperty(
-        "--exhaust-scale",
-        String(0.7 + speedRatio * 0.75)
-      );
-
-      document.body.style.setProperty(
         "--rocket-glow",
         `${3 + speedRatio * 5}px`
       );
@@ -390,22 +455,52 @@ if (
       cursorRing.style.left = `${ringX}px`;
       cursorRing.style.top = `${ringY}px`;
 
-      dustPositions.forEach((point, index) => {
+      const now = performance.now();
 
-        const target =
-          index === 0
-            ? { x: mouseX, y: mouseY }
-            : dustPositions[index - 1];
+      exhaustContext.clearRect(
+        0,
+        0,
+        window.innerWidth,
+        window.innerHeight
+      );
 
-        const ease = index === 0 ? 0.24 : 0.3;
+      while (
+        trailPoints.length &&
+        now - trailPoints[trailPoints.length - 1].createdAt >
+          trailLifetime
+      ) {
+        trailPoints.pop();
+      }
 
-        point.x += (target.x - point.x) * ease;
-        point.y += (target.y - point.y) * ease;
+      if (activeCursor === "rocket") {
+        exhaustContext.lineCap = "round";
+        exhaustContext.lineJoin = "round";
 
-        rocketExhaust[index].style.left = `${point.x}px`;
-        rocketExhaust[index].style.top = `${point.y}px`;
+        for (
+          let index = trailPoints.length - 1;
+          index > 0;
+          index -= 1
+        ) {
+          const older = trailPoints[index];
+          const newer = trailPoints[index - 1];
+          const age = now - newer.createdAt;
+          const fade = Math.max(1 - age / trailLifetime, 0);
+          const proximity = 1 - index / trailPoints.length;
+          const baseWidth =
+            1.2 + Math.pow(proximity, 2.2) * 10.8;
 
-      });
+          exhaustContext.beginPath();
+          exhaustContext.moveTo(older.x, older.y);
+          exhaustContext.lineTo(newer.x, newer.y);
+          exhaustContext.lineWidth = baseWidth;
+          exhaustContext.strokeStyle =
+            `rgba(214, 238, 71, ${fade * (0.2 + proximity * 0.68)})`;
+          exhaustContext.shadowColor =
+            `rgba(214, 238, 71, ${fade * 0.55})`;
+          exhaustContext.shadowBlur = 3 + proximity * 8;
+          exhaustContext.stroke();
+        }
+      }
 
     }
 
@@ -419,5 +514,7 @@ if (
   finePointerQuery.addEventListener("change", () => {
     setCursorMode(selectedCursor, false);
   });
+
+  window.addEventListener("resize", sizeExhaustCanvas);
 
 }
