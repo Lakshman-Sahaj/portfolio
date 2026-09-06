@@ -170,6 +170,11 @@ const rocketExhaust =
     document.querySelectorAll("#rocketExhaust span")
   );
 
+const rocketBurst =
+  Array.from(
+    document.querySelectorAll("#rocketBurst span")
+  );
+
 const cursorChoices =
   Array.from(
     document.querySelectorAll(".cursor-choice")
@@ -206,15 +211,95 @@ let ringY = 0;
 let pointerStarted = false;
 let pointerSpeed = 0;
 let rocketAngle = 0;
-let lastMoveTime = 0;
-let trailEnergy = 0;
+let lastBurstAt = 0;
 
 const dustPositions =
-  rocketExhaust.map((element, index) => ({
+  rocketExhaust.map(() => ({ x: 0, y: 0 }));
+
+const burstParticles =
+  rocketBurst.map((element) => ({
+    element,
+    active: false,
     x: 0,
     y: 0,
-    lane: (index % 5 - 2) / 2
+    velocityX: 0,
+    velocityY: 0,
+    life: 0,
+    maxLife: 0,
+    size: 1,
+    sideX: 0,
+    sideY: 0,
+    phase: 0,
+    spin: 0,
+    radius: 0
   }));
+
+
+function emitRocketBurst(speed) {
+
+  const now = performance.now();
+
+  if (
+    activeCursor !== "rocket" ||
+    now - lastBurstAt < 65
+  ) {
+    return;
+  }
+
+  lastBurstAt = now;
+
+  const intensity =
+    Math.min((speed - 30) / 34, 1);
+
+  const particleCount =
+    Math.round(18 + intensity * 10);
+
+  const backwardX = -Math.cos(rocketAngle);
+  const backwardY = -Math.sin(rocketAngle);
+
+  const sideX = -backwardY;
+  const sideY = backwardX;
+
+  burstParticles
+    .slice(0, particleCount)
+    .forEach((particle, index) => {
+
+      const force =
+        4 + Math.random() * (7 + intensity * 7);
+
+      particle.active = true;
+      particle.x = mouseX + backwardX * 10;
+      particle.y = mouseY + backwardY * 10;
+      particle.velocityX =
+        backwardX * force;
+      particle.velocityY =
+        backwardY * force;
+      particle.maxLife =
+        28 + Math.random() * (22 + intensity * 18);
+      particle.life = particle.maxLife;
+      particle.size =
+        1.5 + Math.random() * (3 + intensity * 2.5);
+      particle.sideX = sideX;
+      particle.sideY = sideY;
+      particle.phase =
+        Math.random() * Math.PI * 2;
+      particle.spin =
+        (0.16 + Math.random() * 0.2) *
+        (index % 2 === 0 ? 1 : -1);
+      particle.radius =
+        2 + Math.random() * (3 + intensity * 4);
+
+      particle.element.style.width = `${particle.size}px`;
+      particle.element.style.height = `${particle.size}px`;
+      particle.element.style.left = `${particle.x}px`;
+      particle.element.style.top = `${particle.y}px`;
+      particle.element.style.opacity =
+        String(0.55 + Math.random() * 0.45);
+
+    });
+
+}
+
 
 function setCursorMode(mode, saveChoice = true) {
 
@@ -267,8 +352,9 @@ function setCursorMode(mode, saveChoice = true) {
   }
 
   if (activeCursor !== "rocket") {
-    rocketExhaust.forEach((particle) => {
-      particle.style.opacity = "0";
+    burstParticles.forEach((particle) => {
+      particle.active = false;
+      particle.element.style.opacity = "0";
     });
   }
 
@@ -301,19 +387,10 @@ if (
       const movementSpeed =
         Math.min(Math.hypot(deltaX, deltaY), 64);
 
-      if (pointerStarted) {
-        pointerSpeed = Math.max(
-          pointerSpeed,
-          movementSpeed
-        );
-
-        trailEnergy = Math.max(
-          trailEnergy,
-          Math.min(movementSpeed / 38, 1)
-        );
-      }
-
-      lastMoveTime = performance.now();
+      pointerSpeed = Math.max(
+        pointerSpeed,
+        movementSpeed
+      );
 
       if (
         pointerStarted &&
@@ -332,23 +409,9 @@ if (
 
       if (
         pointerStarted &&
-        movementSpeed > 2
+        movementSpeed > 30
       ) {
-
-        const actualSpeed =
-          Math.max(Math.hypot(deltaX, deltaY), 1);
-
-        const directionX = deltaX / actualSpeed;
-        const directionY = deltaY / actualSpeed;
-
-        dustPositions
-          .slice(0, 6)
-          .forEach((point, index) => {
-            const distance = 13 + index * 6;
-            point.x = mouseX - directionX * distance;
-            point.y = mouseY - directionY * distance;
-          });
-
+        emitRocketBurst(movementSpeed);
       }
 
       cursorDot.style.left = `${mouseX}px`;
@@ -410,44 +473,24 @@ if (
 
     if (pointerStarted) {
 
-      pointerSpeed *= 0.9;
+      pointerSpeed *= 0.88;
 
       const speedRatio =
         Math.min(pointerSpeed / 28, 1);
 
-      const timeSinceMove =
-        performance.now() - lastMoveTime;
-
-      const fadeDuration =
-        700 + trailEnergy * 2300;
-
-      const trailFade =
-        timeSinceMove <= 120
-          ? 1
-          : Math.max(
-              1 - (timeSinceMove - 120) / fadeDuration,
-              0
-            );
-
-      const visualPower =
-        Math.max(speedRatio, trailEnergy * trailFade);
-
-      const visibleParticles =
-        Math.round(8 + visualPower * 20);
-
       document.body.style.setProperty(
         "--exhaust-strength",
-        String(0.82 + visualPower * 0.38)
+        String(0.82 + speedRatio * 0.38)
+      );
+
+      document.body.style.setProperty(
+        "--exhaust-scale",
+        String(0.9 + speedRatio * 0.45)
       );
 
       document.body.style.setProperty(
         "--rocket-glow",
-        `${3 + visualPower * 6}px`
-      );
-
-      document.body.style.setProperty(
-        "--flame-scale",
-        String(0.72 + visualPower * 1.45)
+        `${3 + speedRatio * 5}px`
       );
 
       ringX += (mouseX - ringX) * 0.18;
@@ -456,68 +499,61 @@ if (
       cursorRing.style.left = `${ringX}px`;
       cursorRing.style.top = `${ringY}px`;
 
-      if (timeSinceMove < 200) {
-
-        dustPositions.forEach((point, index) => {
-
-          const target =
-            index === 0
-              ? { x: mouseX, y: mouseY }
-              : dustPositions[index - 1];
-
-          const ease =
-            index === 0 ? 0.42 : 0.31;
-
-          point.x += (target.x - point.x) * ease;
-          point.y += (target.y - point.y) * ease;
-
-        });
-
-      }
-
-      const sideX = -Math.sin(rocketAngle);
-      const sideY = Math.cos(rocketAngle);
-
       dustPositions.forEach((point, index) => {
 
-        const progress =
-          index / Math.max(visibleParticles - 1, 1);
+        const target =
+          index === 0
+            ? { x: mouseX, y: mouseY }
+            : dustPositions[index - 1];
 
-        const taper =
-          Math.max(1 - progress, 0);
+        const ease = index === 0 ? 0.24 : 0.3;
 
-        const spread =
-          point.lane * taper * visualPower * 10;
+        point.x += (target.x - point.x) * ease;
+        point.y += (target.y - point.y) * ease;
 
-        const particleSize =
-          1.2 + taper * (1.3 + visualPower * 5.8);
-
-        const opacity =
-          activeCursor === "rocket" &&
-          index < visibleParticles
-            ? trailFade * (0.18 + taper * 0.72)
-            : 0;
-
-        rocketExhaust[index].style.left =
-          `${point.x + sideX * spread}px`;
-        rocketExhaust[index].style.top =
-          `${point.y + sideY * spread}px`;
-        rocketExhaust[index].style.width =
-          `${particleSize}px`;
-        rocketExhaust[index].style.height =
-          `${particleSize}px`;
-        rocketExhaust[index].style.opacity =
-          String(opacity);
-        rocketExhaust[index].style.setProperty(
-          "--trail-glow",
-          `${2 + taper * visualPower * 8}px`
-        );
+        rocketExhaust[index].style.left = `${point.x}px`;
+        rocketExhaust[index].style.top = `${point.y}px`;
 
       });
 
-      if (trailFade === 0) {
-        trailEnergy = 0;
-      }
+      burstParticles.forEach((particle) => {
+
+        if (!particle.active) {
+          return;
+        }
+
+        particle.x += particle.velocityX;
+        particle.y += particle.velocityY;
+        particle.velocityX *= 0.95;
+        particle.velocityY *= 0.95;
+        particle.phase += particle.spin;
+        particle.radius *= 1.012;
+        particle.life -= 1;
+
+        const lifeRatio =
+          Math.max(particle.life / particle.maxLife, 0);
+
+        const vortexOffset =
+          Math.cos(particle.phase) * particle.radius;
+
+        const depth =
+          0.78 + (Math.sin(particle.phase) + 1) * 0.16;
+
+        particle.element.style.left =
+          `${particle.x + particle.sideX * vortexOffset}px`;
+        particle.element.style.top =
+          `${particle.y + particle.sideY * vortexOffset}px`;
+        particle.element.style.opacity =
+          String(lifeRatio * lifeRatio * depth);
+        particle.element.style.transform =
+          `translate(-50%, -50%) scale(${(0.55 + lifeRatio) * depth})`;
+
+        if (particle.life <= 0) {
+          particle.active = false;
+          particle.element.style.opacity = "0";
+        }
+
+      });
 
     }
 
