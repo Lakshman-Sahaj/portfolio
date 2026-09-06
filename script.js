@@ -185,8 +185,6 @@ if (
   let ringX = 0;
   let ringY = 0;
 
-  let cursorVisible = false;
-
 
   document.addEventListener(
     "mousemove",
@@ -206,39 +204,25 @@ if (
         `${mouseY}px`;
 
 
-      if (!cursorVisible) {
-
-        cursorVisible =
-          true;
-
-        cursorDot.classList.add(
-          "is-visible"
-        );
-
-        cursorRing.classList.add(
-          "is-visible"
-        );
-
-      }
+      document.body.classList.add(
+        "cursor-active"
+      );
 
     }
   );
 
 
   document.addEventListener(
-    "mouseleave",
-    () => {
+    "mouseout",
+    (event) => {
 
-      cursorVisible =
-        false;
+      if (!event.relatedTarget) {
 
-      cursorDot.classList.remove(
-        "is-visible"
-      );
+        document.body.classList.remove(
+          "cursor-active"
+        );
 
-      cursorRing.classList.remove(
-        "is-visible"
-      );
+      }
 
     }
   );
@@ -291,10 +275,10 @@ if (
   function animateCursor() {
 
     ringX +=
-      (mouseX - ringX) * 0.14;
+      (mouseX - ringX) * 0.18;
 
     ringY +=
-      (mouseY - ringY) * 0.14;
+      (mouseY - ringY) * 0.18;
 
 
     cursorRing.style.left =

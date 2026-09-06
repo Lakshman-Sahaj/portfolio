@@ -1056,41 +1056,42 @@ footer a {
   top: 0;
   left: 0;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
+  z-index: 99999;
   transform: translate(-50%, -50%);
-  will-change: left, top, width, height;
 }
 
 .custom-cursor-dot {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  transition: opacity .15s ease, transform .15s ease;
+  opacity: 0;
+  transition: width .16s ease, height .16s ease, opacity .15s ease;
 }
 
 .custom-cursor-ring {
-  width: 24px;
-  height: 24px;
-  border: 1px solid rgba(242,241,235,.72);
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(242,241,235,.85);
   border-radius: 50%;
+  opacity: 0;
   transition: width .18s ease, height .18s ease, border-color .18s ease, opacity .15s ease;
 }
 
-.custom-cursor-dot.is-visible,
-.custom-cursor-ring.is-visible {
+body.cursor-active .custom-cursor-dot,
+body.cursor-active .custom-cursor-ring {
   opacity: 1;
 }
 
 .custom-cursor-ring.is-hovering {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
   border-color: var(--accent);
 }
 
 .custom-cursor-dot.is-hovering {
-  transform: translate(-50%, -50%) scale(.75);
+  width: 4px;
+  height: 4px;
 }
 
 @media (pointer: fine) {
@@ -1099,6 +1100,13 @@ footer a {
   .custom-cursor-enabled button,
   .custom-cursor-enabled summary {
     cursor: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .custom-cursor-dot,
+  .custom-cursor-ring {
+    display: none;
   }
 }
 
