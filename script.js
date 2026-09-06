@@ -33,73 +33,79 @@ const placeholderCategory =
   document.getElementById("placeholderCategory");
 
 
+/* PROJECT NAVIGATION */
+
 document
   .querySelectorAll(".project-row")
   .forEach((project) => {
 
-    project.addEventListener("click", () => {
+    project.addEventListener(
+      "click",
+      () => {
 
-      const projectNumber =
-        project.dataset.project;
+        const projectNumber =
+          project.dataset.project;
 
-      const isAircraftProject =
-        projectNumber === "01";
-
-
-      projectPageIndex.textContent =
-        projectNumber;
+        const isAircraftProject =
+          projectNumber === "01";
 
 
-      if (isAircraftProject) {
+        projectPageIndex.textContent =
+          projectNumber;
 
-        projectCaseStudy.hidden =
-          false;
 
-        projectPlaceholderCanvas.hidden =
-          true;
+        if (isAircraftProject) {
 
-        projectPageTitle.textContent =
-          project.dataset.title;
+          projectCaseStudy.hidden =
+            false;
 
-        projectPageCategory.textContent =
-          project.dataset.category.toUpperCase();
+          projectPlaceholderCanvas.hidden =
+            true;
 
-      } else {
+          projectPageTitle.textContent =
+            project.dataset.title;
 
-        projectCaseStudy.hidden =
-          true;
+          projectPageCategory.textContent =
+            project.dataset.category.toUpperCase();
 
-        projectPlaceholderCanvas.hidden =
-          false;
+        } else {
 
-        placeholderTitle.textContent =
-          project.dataset.title;
+          projectCaseStudy.hidden =
+            true;
 
-        placeholderCategory.textContent =
-          project.dataset.category.toUpperCase();
+          projectPlaceholderCanvas.hidden =
+            false;
+
+          placeholderTitle.textContent =
+            project.dataset.title;
+
+          placeholderCategory.textContent =
+            project.dataset.category.toUpperCase();
+
+        }
+
+
+        siteShell.classList.add(
+          "project-open"
+        );
+
+        projectPage.classList.add(
+          "open"
+        );
+
+        projectPage.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+
+        document.body.style.overflow =
+          "hidden";
+
+        projectPage.scrollTop =
+          0;
 
       }
-
-
-      siteShell.classList.add(
-        "project-open"
-      );
-
-      projectPage.classList.add(
-        "open"
-      );
-
-      projectPage.setAttribute(
-        "aria-hidden",
-        "false"
-      );
-
-      document.body.style.overflow =
-        "hidden";
-
-      projectPage.scrollTop = 0;
-
-    });
+    );
 
   });
 
@@ -139,8 +145,179 @@ document.addEventListener(
       event.key === "Escape" &&
       projectPage.classList.contains("open")
     ) {
+
       closeProject();
+
     }
 
   }
 );
+
+
+/* CUSTOM DESKTOP CURSOR */
+
+const cursorDot =
+  document.getElementById("cursorDot");
+
+const cursorRing =
+  document.getElementById("cursorRing");
+
+
+const supportsFinePointer =
+  window.matchMedia(
+    "(pointer: fine)"
+  ).matches;
+
+
+if (
+  supportsFinePointer &&
+  cursorDot &&
+  cursorRing
+) {
+
+  let mouseX = 0;
+  let mouseY = 0;
+
+  let ringX = 0;
+  let ringY = 0;
+
+  let cursorVisible = false;
+
+
+  document.addEventListener(
+    "mousemove",
+    (event) => {
+
+      mouseX =
+        event.clientX;
+
+      mouseY =
+        event.clientY;
+
+
+      cursorDot.style.left =
+        `${mouseX}px`;
+
+      cursorDot.style.top =
+        `${mouseY}px`;
+
+
+      if (!cursorVisible) {
+
+        cursorVisible =
+          true;
+
+        cursorDot.classList.add(
+          "is-visible"
+        );
+
+        cursorRing.classList.add(
+          "is-visible"
+        );
+
+      }
+
+    }
+  );
+
+
+  document.addEventListener(
+    "mouseleave",
+    () => {
+
+      cursorVisible =
+        false;
+
+      cursorDot.classList.remove(
+        "is-visible"
+      );
+
+      cursorRing.classList.remove(
+        "is-visible"
+      );
+
+    }
+  );
+
+
+  document.addEventListener(
+    "mouseenter",
+    () => {
+
+      cursorVisible =
+        true;
+
+    }
+  );
+
+
+  const interactiveElements =
+    document.querySelectorAll(
+      "a, button, summary"
+    );
+
+
+  interactiveElements.forEach(
+    (element) => {
+
+      element.addEventListener(
+        "mouseenter",
+        () => {
+
+          cursorRing.classList.add(
+            "is-hovering"
+          );
+
+          cursorDot.classList.add(
+            "is-hovering"
+          );
+
+        }
+      );
+
+
+      element.addEventListener(
+        "mouseleave",
+        () => {
+
+          cursorRing.classList.remove(
+            "is-hovering"
+          );
+
+          cursorDot.classList.remove(
+            "is-hovering"
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+  function animateCursor() {
+
+    ringX +=
+      (mouseX - ringX) * 0.14;
+
+    ringY +=
+      (mouseY - ringY) * 0.14;
+
+
+    cursorRing.style.left =
+      `${ringX}px`;
+
+    cursorRing.style.top =
+      `${ringY}px`;
+
+
+    requestAnimationFrame(
+      animateCursor
+    );
+
+  }
+
+
+  animateCursor();
+
+}
