@@ -583,20 +583,12 @@ h1 .accent { color: var(--accent); }
   align-items: center;
 }
 
-.bio-photo-placeholder {
+.bio-photo {
+  display: block;
   width: 100%;
   max-width: 420px;
   aspect-ratio: 4 / 5;
-  display: grid;
-  place-items: end start;
-  padding: 18px;
-  background:
-    radial-gradient(circle at 50% 33%, #242824 0 13%, transparent 13.5%),
-    radial-gradient(ellipse at 50% 104%, #1b1f1c 0 47%, transparent 47.5%),
-    #0b0d0c;
-  color: #666c67;
-  font-size: 9px;
-  letter-spacing: .16em;
+  object-fit: cover;
 }
 
 .bio-interest-web {
@@ -1482,7 +1474,7 @@ body.cursor-mode-rocket.cursor-active .rocket-cursor { opacity: 1; }
     padding-top: 24px;
   }
 
-  .bio-photo-placeholder {
+  .bio-photo {
     width: min(78%, 420px);
     aspect-ratio: 4 / 5;
   }
