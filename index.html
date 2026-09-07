@@ -35,12 +35,22 @@
 
     <header class="topbar">
 
-      <a
-        class="monogram"
-        href="#top"
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch to lime accent"
       >
-        LS
-      </a>
+        <span
+          class="theme-swatch theme-swatch-purple"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="theme-swatch theme-swatch-lime"
+          aria-hidden="true"
+        ></span>
+        <span id="themeLabel">PURPLE</span>
+      </button>
 
     </header>
 
@@ -62,13 +72,8 @@
 
           <h1>
 
-            <span>
-              Lakshman
-            </span>
-
-            <span class="accent">
-              Sahaj.
-            </span>
+            <span>Lakshman</span>
+            <span class="accent">Sahaj.</span>
 
           </h1>
 
@@ -153,25 +158,6 @@
           </div>
 
         </aside>
-
-
-
-        <a
-          class="scroll-cue"
-          href="#bio"
-        >
-
-          <span>
-            ABOUT
-          </span>
-
-          <span
-            class="css-arrow css-arrow-down"
-            aria-hidden="true"
-          ></span>
-
-        </a>
-
 
       </section>
 

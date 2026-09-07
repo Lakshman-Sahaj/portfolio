@@ -1,3 +1,70 @@
+const themeToggle =
+  document.getElementById("themeToggle");
+
+const themeLabel =
+  document.getElementById("themeLabel");
+
+let selectedTheme = "purple";
+let accentRgb = "184, 108, 255";
+
+try {
+  const savedTheme = window.localStorage.getItem("portfolio-theme");
+  if (savedTheme === "lime") selectedTheme = "lime";
+} catch (error) {
+  selectedTheme = "purple";
+}
+
+function updateAccentColor() {
+  const accent = getComputedStyle(document.documentElement)
+    .getPropertyValue("--accent")
+    .trim();
+  const match = accent.match(/^#([0-9a-f]{6})$/i);
+
+  if (match) {
+    accentRgb = [0, 2, 4]
+      .map((offset) => parseInt(match[1].slice(offset, offset + 2), 16))
+      .join(", ");
+  }
+}
+
+function setTheme(theme, saveChoice = true) {
+  selectedTheme = theme === "lime" ? "lime" : "purple";
+  document.documentElement.dataset.theme = selectedTheme;
+
+  if (themeLabel) {
+    themeLabel.textContent = selectedTheme.toUpperCase();
+  }
+
+  if (themeToggle) {
+    const nextTheme = selectedTheme === "lime" ? "purple" : "lime";
+    themeToggle.setAttribute(
+      "aria-label",
+      `Switch to ${nextTheme} accent`
+    );
+    themeToggle.setAttribute(
+      "aria-pressed",
+      String(selectedTheme === "lime")
+    );
+  }
+
+  updateAccentColor();
+
+  if (saveChoice) {
+    try {
+      window.localStorage.setItem("portfolio-theme", selectedTheme);
+    } catch (error) {
+      // The theme still works when storage is unavailable.
+    }
+  }
+}
+
+setTheme(selectedTheme, false);
+
+themeToggle?.addEventListener("click", () => {
+  setTheme(selectedTheme === "lime" ? "purple" : "lime");
+});
+
+
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
@@ -532,9 +599,9 @@ if (
           );
           exhaustContext.lineWidth = baseWidth;
           exhaustContext.strokeStyle =
-            `rgba(214, 238, 71, ${fade * (0.18 + proximity * 0.62)})`;
+            `rgba(${accentRgb}, ${fade * (0.18 + proximity * 0.62)})`;
           exhaustContext.shadowColor =
-            `rgba(214, 238, 71, ${fade * 0.28})`;
+            `rgba(${accentRgb}, ${fade * 0.28})`;
           exhaustContext.shadowBlur = 1.5 + proximity * 2.5;
           exhaustContext.stroke();
         }
