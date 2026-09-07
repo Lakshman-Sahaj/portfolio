@@ -241,7 +241,7 @@ function addTrailPath(startX, startY, endX, endY) {
     Math.hypot(endX - startX, endY - startY);
 
   const steps =
-    Math.max(Math.ceil(distance / 6), 1);
+    Math.max(Math.ceil(distance / 3), 1);
 
   const createdAt = performance.now();
 
@@ -257,7 +257,7 @@ function addTrailPath(startX, startY, endX, endY) {
   }
 
   trailPoints.length =
-    Math.min(trailPoints.length, 130);
+    Math.min(trailPoints.length, 200);
 
 }
 
@@ -479,7 +479,7 @@ if (
         exhaustContext.lineCap = "round";
         exhaustContext.lineJoin = "round";
 
-        const bandCount = 7;
+        const bandCount = 14;
         const segmentCount = trailPoints.length - 1;
 
         for (let band = 0; band < bandCount; band += 1) {
@@ -489,7 +489,7 @@ if (
           const newerIndex = Math.max(
             Math.floor(
               segmentCount * (1 - (band + 1) / bandCount)
-            ),
+            ) - 1,
             0
           );
 
