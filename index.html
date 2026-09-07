@@ -145,8 +145,8 @@
                 viewBox="0 0 24 24"
                 aria-hidden="true"
               >
-                <path d="M12 3.5v2M12 18.5v2M3.5 12h2M18.5 12h2M6 6l1.4 1.4M16.6 16.6 18 18M18 6l-1.4 1.4M7.4 16.6 6 18" />
-                <circle cx="12" cy="12" r="4.2" />
+                <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                <circle cx="12" cy="12" r="3" />
               </svg>
 
               <span>
@@ -194,31 +194,60 @@
           </div>
 
 
-          <div class="bio-content">
+          <div
+            class="bio-interest-web"
+            aria-label="Bio and interests"
+          >
+
+            <svg
+              class="bio-web-lines"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <line x1="18" y1="12" x2="48" y2="47" />
+              <line x1="72" y1="10" x2="53" y2="46" />
+              <line x1="7" y1="42" x2="44" y2="51" />
+              <line x1="91" y1="37" x2="57" y2="50" />
+              <line x1="16" y1="78" x2="45" y2="57" />
+              <line x1="43" y1="91" x2="49" y2="59" />
+              <line x1="76" y1="84" x2="55" y2="58" />
+              <line x1="94" y1="67" x2="58" y2="55" />
+            </svg>
 
             <p class="bio-copy">
-              I like building things where software meets the real world.
-              Most of my projects end up somewhere around aerospace,
-              automation, AI, manufacturing, software, or 3D printing. I
-              like turning ideas into things I can actually test, improve,
-              and build on.
+              I am a computer science student at Georgia State University.
             </p>
 
-
             <div
-              class="bio-tags"
+              class="bio-interest-nodes"
               aria-label="Interests"
             >
-              <span>AI</span>
-              <span>Aerospace</span>
-              <span>Software</span>
-              <span>Automation</span>
-              <span>3D Printing</span>
-              <span>Manufacturing</span>
-              <span>Data</span>
-              <span>CAD</span>
+              <span class="bio-web-node node-aerospace">Aerospace</span>
+              <span class="bio-web-node node-ai">AI</span>
+              <span class="bio-web-node node-software">Software</span>
+              <span class="bio-web-node node-automation">Automation</span>
+              <span class="bio-web-node node-printing">3D Printing</span>
+              <span class="bio-web-node node-manufacturing">Manufacturing</span>
+              <span class="bio-web-node node-data">Data</span>
+              <span class="bio-web-node node-cad">CAD</span>
             </div>
 
+          </div>
+
+
+          <div
+            class="bio-course-stack"
+            aria-label="Selected coursework"
+          >
+            <span>Artificial Intelligence</span>
+            <span>Machine Learning</span>
+            <span>Software Development</span>
+            <span>System-Level Programming</span>
+            <span>Data Structures</span>
+            <span>Computer Organization</span>
+            <span>Linear Algebra</span>
+            <span>Probability &amp; Statistics for CS</span>
           </div>
 
         </div>
