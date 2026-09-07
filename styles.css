@@ -525,25 +525,61 @@ h1 .accent { color: var(--accent); }
 .bio-grid {
   padding-top: 28px;
   display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 68px;
+  grid-template-columns: minmax(240px, .62fr) minmax(0, 1fr);
+  gap: clamp(46px, 7vw, 110px);
+  align-items: center;
 }
 
-.bio-big {
-  max-width: 760px;
-  margin: 0;
-  font-size: clamp(25px, 3vw, 42px);
-  line-height: 1.08;
-  letter-spacing: -.045em;
+.bio-photo-placeholder {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: #0b0d0c;
+  color: #505651;
+  font-size: 9px;
+  letter-spacing: .16em;
 }
 
-.bio-small {
-  align-self: end;
-  max-width: 520px;
+.bio-content {
+  max-width: 690px;
+}
+
+.bio-copy {
   margin: 0;
+  color: var(--text);
+  font-size: clamp(19px, 2vw, 27px);
+  line-height: 1.42;
+  letter-spacing: -.025em;
+}
+
+.bio-tags {
+  margin-top: 27px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 9px;
+}
+
+.bio-tags span {
+  padding: 6px 10px 5px;
+  border: 1px solid #343a35;
+  border-radius: 999px;
   color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition: color .16s ease, border-color .16s ease, transform .16s ease;
+}
+
+.bio-tags span:nth-child(3n + 2) {
+  margin-right: 4px;
+}
+
+.bio-tags span:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 
@@ -1322,10 +1358,15 @@ body.cursor-mode-rocket.cursor-active .rocket-cursor { opacity: 1; }
 
   .bio-grid {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 26px;
   }
 
-  .bio-small { max-width: 600px; }
+  .bio-photo-placeholder {
+    width: min(100%, 520px);
+    aspect-ratio: 4 / 3;
+  }
+
+  .bio-content { max-width: 640px; }
 
   footer {
     grid-template-columns: 1fr;
@@ -1412,7 +1453,11 @@ body.cursor-mode-rocket.cursor-active .rocket-cursor { opacity: 1; }
     gap: 22px 32px;
   }
 
-  .bio-big {
-    font-size: clamp(26px, 8vw, 36px);
+  .bio-copy {
+    font-size: clamp(18px, 5.4vw, 24px);
+  }
+
+  .bio-tags {
+    margin-top: 22px;
   }
 }
