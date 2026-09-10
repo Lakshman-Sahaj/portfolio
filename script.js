@@ -90,6 +90,9 @@ const projectPageCategory =
 const projectCaseStudy =
   document.getElementById("projectCaseStudy");
 
+const exoplanetCaseStudy =
+  document.getElementById("exoplanetCaseStudy");
+
 const projectPlaceholderCanvas =
   document.getElementById("projectPlaceholderCanvas");
 
@@ -98,6 +101,66 @@ const placeholderTitle =
 
 const placeholderCategory =
   document.getElementById("placeholderCategory");
+
+
+/* PROJECT 02 DATA */
+
+const exoplanetProjectData = {
+  status: "active development",
+  detectedPeriod: "~6.3 d",
+  publishedPeriod: null,
+  periodError: null,
+  stats: {
+    analyzed: 1,
+    flagged: 1,
+    rejected: 0,
+    validated: 1,
+    newPlanets: 0
+  },
+  candidateEntries: [],
+  images: {
+    raw: "assets/images/projects/exoplanet/raw-tess-lightcurve.png",
+    flattened: "assets/images/projects/exoplanet/flattened-lightcurve.png",
+    periodogram: "assets/images/projects/exoplanet/bls-periodogram.png",
+    phaseFolded: "assets/images/projects/exoplanet/phase-folded-transit.png",
+    failedCandidate: "assets/images/projects/exoplanet/failed-candidate-example.png"
+  }
+};
+
+function formatProjectValue(value) {
+  return value === null || value === undefined ? "pending" : String(value);
+}
+
+document.querySelectorAll("[data-exoplanet-value]").forEach((element) => {
+  element.textContent = formatProjectValue(
+    exoplanetProjectData[element.dataset.exoplanetValue]
+  );
+});
+
+document.querySelectorAll("[data-exoplanet-stat]").forEach((element) => {
+  const value = exoplanetProjectData.stats[element.dataset.exoplanetStat];
+  element.textContent = String(value).padStart(3, "0");
+});
+
+document.querySelectorAll("[data-exoplanet-image]").forEach((figure) => {
+  const image = figure.querySelector("img");
+  const fallback = figure.querySelector(".project-image-state");
+  const imagePath = exoplanetProjectData.images[figure.dataset.exoplanetImage];
+
+  if (!image || !fallback || !imagePath) return;
+
+  image.addEventListener("load", () => {
+    image.hidden = false;
+    fallback.hidden = true;
+  });
+
+  image.addEventListener("error", () => {
+    image.hidden = true;
+    fallback.hidden = false;
+  });
+
+  image.src = imagePath;
+});
 
 
 /* PROJECT NAVIGATION */
@@ -116,18 +179,20 @@ document
         const isAircraftProject =
           projectNumber === "01";
 
+        const isExoplanetProject =
+          projectNumber === "02";
+
 
         projectPageIndex.textContent =
           projectNumber;
 
 
+        projectCaseStudy.hidden = !isAircraftProject;
+        exoplanetCaseStudy.hidden = !isExoplanetProject;
+        projectPlaceholderCanvas.hidden =
+          isAircraftProject || isExoplanetProject;
+
         if (isAircraftProject) {
-
-          projectCaseStudy.hidden =
-            false;
-
-          projectPlaceholderCanvas.hidden =
-            true;
 
           projectPageTitle.textContent =
             project.dataset.title;
@@ -135,13 +200,7 @@ document
           projectPageCategory.textContent =
             project.dataset.category.toUpperCase();
 
-        } else {
-
-          projectCaseStudy.hidden =
-            true;
-
-          projectPlaceholderCanvas.hidden =
-            false;
+        } else if (!isExoplanetProject) {
 
           placeholderTitle.textContent =
             project.dataset.title;

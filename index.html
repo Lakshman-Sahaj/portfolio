@@ -304,12 +304,19 @@
           <button
             class="project-row"
             data-project="02"
-            data-title="Project 02"
-            data-category="Data / Systems"
+            data-title="TESS Exoplanet Transit Detector"
+            data-category="Python / TESS / Time Series"
           >
             <span class="project-number">02</span>
-            <span class="project-title">Project 02</span>
-            <span class="project-type">UNDER CONSTRUCTION</span>
+            <span class="project-title-group">
+              <span class="project-title">Exoplanet Transit Detector</span>
+              <span class="project-summary">Searching NASA TESS light curves for repeating transit signals.</span>
+              <svg class="project-card-curve" viewBox="0 0 180 20" aria-hidden="true">
+                <path d="M1 7 C35 6 61 8 82 7 C88 7 89 16 96 16 C103 16 104 7 111 7 C130 6 153 8 179 6" />
+                <circle cx="96" cy="16" r="1.5" />
+              </svg>
+            </span>
+            <span class="project-type">PYTHON · TESS · TIME SERIES</span>
             <span class="project-arrow"><span class="css-arrow css-arrow-up" aria-hidden="true"></span></span>
           </button>
 
@@ -615,8 +622,7 @@
 
 
             <div class="project-media-placeholder terminal-placeholder">
-              <span>TERMINAL OUTPUT</span>
-              <small>replace with real screenshot</small>
+              <span>could not load image</span>
             </div>
 
 
@@ -655,7 +661,7 @@
 
 
             <article class="plot-item plot-item-roc">
-              <div class="plot-placeholder">RATE OF CLIMB VS AIRSPEED</div>
+              <div class="plot-placeholder">could not load image</div>
               <div class="plot-copy">
                 <h4>Rate of climb</h4>
                 <p>The climb curve made the excess-power relationship much easier to see.</p>
@@ -668,12 +674,12 @@
                 <h4>Lift-to-drag ratio</h4>
                 <p>This is where the efficiency relationship stopped feeling abstract. The best-performing speed region becomes obvious once it is plotted.</p>
               </div>
-              <div class="plot-placeholder">L/D VS AIRSPEED</div>
+              <div class="plot-placeholder">could not load image</div>
             </article>
 
 
             <article class="plot-item plot-item-drag">
-              <div class="plot-placeholder">DRAG VS AIRSPEED</div>
+              <div class="plot-placeholder">could not load image</div>
               <div class="plot-copy">
                 <h4>Drag</h4>
                 <p>The curve shows how differently the low-speed and high-speed sides behave.</p>
@@ -686,7 +692,7 @@
                 <h4>Power required</h4>
                 <p>Another way to see how the amount of power the aircraft needs changes across the speed range.</p>
               </div>
-              <div class="plot-placeholder">POWER REQUIRED VS AIRSPEED</div>
+              <div class="plot-placeholder">could not load image</div>
             </article>
 
 
@@ -760,8 +766,7 @@
 
 
             <div class="project-media-placeholder pytest-placeholder">
-              <span>PYTEST OUTPUT</span>
-              <small>replace with real screenshot</small>
+              <span>could not load image</span>
             </div>
 
 
@@ -892,6 +897,178 @@
       </div>
 
 
+      <div
+        id="exoplanetCaseStudy"
+        hidden
+      >
+
+        <section class="project-intro exoplanet-intro">
+          <p class="project-page-category">PROJECT 02 · ASTRONOMY + DATA</p>
+          <h2 class="project-page-title">Finding planets in the noise.</h2>
+          <p class="project-secondary-title">TESS Exoplanet Transit Detector</p>
+          <p class="project-intro-copy">
+            I wanted to see if I could take real telescope data and recover
+            the tiny, repeating drop in brightness caused by a planet
+            crossing its star.
+          </p>
+          <p class="project-tech-line">Python · Lightkurve · Astropy · NASA MAST · TESS</p>
+
+          <svg class="transit-trace" viewBox="0 0 900 90" role="img" aria-label="Simplified light curve with a transit dip">
+            <path d="M2 32 C95 29 160 35 246 31 S378 27 430 32 C449 34 454 72 478 72 C502 72 508 34 528 32 C620 27 720 35 898 30" />
+            <circle cx="478" cy="72" r="3.5" />
+          </svg>
+        </section>
+
+
+        <section class="project-block exoplanet-idea">
+          <div class="project-label">THE IDEA</div>
+          <div class="exo-two-column">
+            <div>
+              <h3>A planet briefly gets in the way.</h3>
+              <p class="exo-copy">When a planet passes between us and its star, some of the starlight is blocked. The change can be tiny, but if the same dip keeps showing up on a regular schedule, there may be something orbiting the star.</p>
+              <p class="exo-copy reflection">NASA's TESS mission has already collected this brightness data, so I could work directly with public light curves instead of telescope images.</p>
+            </div>
+            <div class="transit-sketch" aria-label="Simple transit diagram">
+              <div class="transit-orbit"><span class="sketch-star">STAR</span><span class="sketch-planet">PLANET</span><span class="sketch-observer">OBSERVER</span></div>
+              <svg viewBox="0 0 520 72" aria-hidden="true"><path d="M2 22 H190 C208 22 210 56 232 56 H274 C296 56 298 22 316 22 H518" /></svg>
+              <small>brightness briefly drops</small>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="project-block exoplanet-raw">
+          <div class="project-label">STARTING POINT</div>
+          <div class="exo-heading-offset">
+            <h3>The first graph looked more like noise than a planet.</h3>
+            <p class="exo-copy">I started with a single TESS observation from a known exoplanet system. The data had thousands of measurements, gaps, spikes, and changes in noise. There was no obvious clean transit sitting in the middle of the graph.</p>
+          </div>
+          <div class="exo-raw-layout">
+            <figure class="project-figure" data-exoplanet-image="raw">
+              <img alt="Raw TESS light curve" hidden />
+              <div class="project-image-state">could not load image</div>
+              <figcaption>TIC 261136679 · TESS Sector 01 · raw SPOC light curve</figcaption>
+            </figure>
+            <div class="exo-process" aria-label="Light curve analysis process">
+              <span>TESS observation</span><i></i><span>remove missing data</span><i></i><span>normalize</span><i></i><span>flatten</span><i></i><span>search periods</span><i></i><span>inspect signal</span>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="project-block exoplanet-cleaning">
+          <div class="project-label">PREPROCESSING</div>
+          <div class="exo-two-column exo-cleaning-copy">
+            <h3>Make 1.000 mean normal.</h3>
+            <p class="exo-copy">The raw measurements were around 1.46 million electrons per second. I normalized the light curve so the star's normal brightness sits around 1.000, then flattened slower trends so short transit-like dips would be easier to isolate.</p>
+          </div>
+          <div class="exo-cleaning-visual">
+            <div class="normal-note"><strong>1.000</strong><span>normal brightness</span><i></i><small>planet crosses star<br />brightness &lt; 1.000</small></div>
+            <figure class="project-figure" data-exoplanet-image="flattened">
+              <img alt="Flattened TESS light curve" hidden />
+              <div class="project-image-state">could not load image</div>
+              <figcaption>normalized and flattened light curve</figcaption>
+            </figure>
+          </div>
+        </section>
+
+
+        <section class="project-block exoplanet-period">
+          <div class="project-label">PERIOD SEARCH</div>
+          <h3>Try 10,000 possible orbits.</h3>
+          <p class="exo-copy exo-period-copy">I used Box Least Squares to test 10,000 candidate periods between one and ten days. For each period, the algorithm checks whether the brightness measurements line up with a repeating transit-shaped drop.</p>
+          <div class="exo-period-layout">
+            <figure class="project-figure project-figure-large" data-exoplanet-image="periodogram">
+              <img alt="Box Least Squares periodogram" hidden />
+              <div class="project-image-state">could not load image</div>
+              <figcaption>Box Least Squares power across the period search</figcaption>
+            </figure>
+            <div class="exo-large-numbers">
+              <p><strong>10,000</strong><span>periods tested</span></p>
+              <p><strong>1 → 10</strong><span>days searched</span></p>
+              <p><strong data-exoplanet-value="detectedPeriod">pending</strong><span>strongest signal</span></p>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="project-block exoplanet-validation">
+          <div class="project-label">FIRST TEST</div>
+          <div class="exo-heading-offset">
+            <h3>I tried to find one we already knew existed.</h3>
+            <p class="exo-copy">Before using the detector on unfamiliar stars, I wanted to see if it could recover a planet whose period was already known. That gave me an answer key and a way to check whether the pipeline was actually doing something useful.</p>
+            <p class="exo-copy reflection">A strong BLS peak by itself is not enough. The detected period still has to produce a convincing repeated transit when the data is phase folded.</p>
+          </div>
+          <figure class="project-figure project-figure-phase" data-exoplanet-image="phaseFolded">
+            <img alt="Phase-folded transit" hidden />
+            <div class="project-image-state">could not load image</div>
+            <figcaption>phase-folded light curve · validation view</figcaption>
+          </figure>
+          <div class="exo-comparison">
+            <p><span>MY DETECTOR</span><strong data-exoplanet-value="detectedPeriod">pending</strong></p>
+            <p><span>PUBLISHED</span><strong data-exoplanet-value="publishedPeriod">pending</strong></p>
+            <p><span>PERIOD ERROR</span><strong data-exoplanet-value="periodError">pending</strong></p>
+          </div>
+        </section>
+
+
+        <section class="project-block exoplanet-attempts">
+          <div class="project-label">NOT EVERY DIP IS A PLANET</div>
+          <h3>The failures count too.</h3>
+          <p class="exo-copy">A transit detector is not very interesting if I only show the signals that worked. I am keeping track of every target I analyze, including signals that looked promising and later failed validation.</p>
+          <div class="exo-stats">
+            <p><span>STARS ANALYZED</span><strong data-exoplanet-stat="analyzed">000</strong></p>
+            <p><span>SIGNALS FLAGGED</span><strong data-exoplanet-stat="flagged">000</strong></p>
+            <p><span>REJECTED</span><strong data-exoplanet-stat="rejected">000</strong></p>
+            <p><span>VALIDATED</span><strong data-exoplanet-stat="validated">000</strong></p>
+            <p><span>NEW PLANETS CLAIMED</span><strong data-exoplanet-stat="newPlanets">000</strong></p>
+          </div>
+          <div class="rejected-candidates" id="rejectedCandidates"><p>No rejected candidates logged yet.</p></div>
+        </section>
+
+
+        <section class="project-block exoplanet-code">
+          <div class="project-label">UNDER THE HOOD</div>
+          <div class="exo-two-column">
+            <div>
+              <h3>The detector is mostly a pipeline.</h3>
+              <div class="exo-process exo-process-wide"><span>MAST</span><i></i><span>Lightkurve</span><i></i><span>clean + normalize</span><i></i><span>Box Least Squares</span><i></i><span>candidate period</span><i></i><span>phase fold</span><i></i><span>score + validate</span></div>
+            </div>
+            <p class="exo-stack-list">Python<br />Lightkurve<br />Astropy<br />NumPy<br />Matplotlib<br />NASA MAST<br />TESS</p>
+          </div>
+          <details class="inline-details">
+            <summary>more about the code</summary>
+            <div class="details-content"><p>The code queries the archive, removes unusable measurements, normalizes and flattens the data, runs the BLS search, phase folds the strongest period, and leaves room for candidate scoring and validation checks as I expand the project.</p></div>
+          </details>
+        </section>
+
+
+        <section class="project-block exoplanet-lessons">
+          <div class="project-label">WHAT SURPRISED ME</div>
+          <div class="exo-two-column">
+            <h3>The hard part was not finding a dip.</h3>
+            <div><p class="exo-copy">I expected the interesting part to be the transit itself. Instead, most of the work was deciding which parts of the signal were actually worth trusting.</p><p class="exo-copy reflection">Noise, gaps, and strong-looking periodic peaks can all make a result look more convincing than it really is.</p></div>
+          </div>
+        </section>
+
+
+        <section class="project-block exoplanet-next">
+          <div class="project-label">WHAT'S NEXT</div>
+          <h3>One star is a test. The interesting part starts after that.</h3>
+          <p class="exo-copy">The first version proves that I can retrieve TESS data, process a light curve, and search for a repeating signal. Next I want to run the same pipeline across more targets, rank the candidates, and keep track of which signals survive validation.</p>
+          <ol class="exo-roadmap"><li><span>01</span>finish known-planet validation</li><li><span>02</span>batch process targets</li><li><span>03</span>candidate scoring</li><li><span>04</span>false-positive checks</li><li><span>05</span>compare against known catalogs</li></ol>
+        </section>
+
+
+        <section class="exo-source-footer">
+          <p>Data: NASA TESS / MAST</p>
+          <p>Analysis: Python / Lightkurve / Astropy</p>
+          <p>Status: <span data-exoplanet-value="status">active development</span></p>
+        </section>
+
+      </div>
+
+
 
       <div
         class="project-placeholder-canvas"
@@ -899,7 +1076,7 @@
         hidden
       >
 
-        <div class="placeholder-project-heading">
+        <section class="project-intro">
 
           <p
             class="project-page-category"
@@ -916,7 +1093,8 @@
             Project
           </h2>
 
-        </div>
+          <p class="project-intro-copy">This project is still under construction.</p>
+        </section>
 
 
         <div class="project-page-placeholder">
