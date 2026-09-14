@@ -7,9 +7,11 @@ const themeLabel =
 let selectedTheme = "purple";
 let accentRgb = "184, 108, 255";
 
+const themes = ["purple", "lime", "oranges"];
+
 try {
   const savedTheme = window.localStorage.getItem("portfolio-theme");
-  if (savedTheme === "lime") selectedTheme = "lime";
+  if (themes.includes(savedTheme)) selectedTheme = savedTheme;
 } catch (error) {
   selectedTheme = "purple";
 }
@@ -28,7 +30,7 @@ function updateAccentColor() {
 }
 
 function setTheme(theme, saveChoice = true) {
-  selectedTheme = theme === "lime" ? "lime" : "purple";
+  selectedTheme = themes.includes(theme) ? theme : "purple";
   document.documentElement.dataset.theme = selectedTheme;
 
   if (themeLabel) {
@@ -36,14 +38,11 @@ function setTheme(theme, saveChoice = true) {
   }
 
   if (themeToggle) {
-    const nextTheme = selectedTheme === "lime" ? "purple" : "lime";
+    const currentThemeIndex = themes.indexOf(selectedTheme);
+    const nextTheme = themes[(currentThemeIndex + 1) % themes.length];
     themeToggle.setAttribute(
       "aria-label",
       `Switch to ${nextTheme} accent`
-    );
-    themeToggle.setAttribute(
-      "aria-pressed",
-      String(selectedTheme === "lime")
     );
   }
 
@@ -61,7 +60,8 @@ function setTheme(theme, saveChoice = true) {
 setTheme(selectedTheme, false);
 
 themeToggle?.addEventListener("click", () => {
-  setTheme(selectedTheme === "lime" ? "purple" : "lime");
+  const currentThemeIndex = themes.indexOf(selectedTheme);
+  setTheme(themes[(currentThemeIndex + 1) % themes.length]);
 });
 
 

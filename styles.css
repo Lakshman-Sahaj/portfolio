@@ -11,6 +11,10 @@
   --accent: #d6ee47;
 }
 
+:root[data-theme="oranges"] {
+  --accent: #FF8A4C;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -368,6 +372,11 @@ body::after {
   opacity: .35;
 }
 
+.theme-swatches {
+  display: inline-flex;
+  gap: 1px;
+}
+
 .theme-swatch-purple {
   background: #b86cff;
 }
@@ -376,8 +385,13 @@ body::after {
   background: #d6ee47;
 }
 
-:root:not([data-theme="lime"]) .theme-swatch-purple,
-:root[data-theme="lime"] .theme-swatch-lime {
+.theme-swatch-oranges {
+  background: #FF8A4C;
+}
+
+:root[data-theme="purple"] .theme-swatch-purple,
+:root[data-theme="lime"] .theme-swatch-lime,
+:root[data-theme="oranges"] .theme-swatch-oranges {
   opacity: 1;
 
   transform: scale(1.2);
@@ -597,7 +611,12 @@ h1 .accent {
 
   min-height: 48px;
 
-  display: inline-flex;
+  display: grid;
+
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
 
   align-items: center;
 
@@ -646,16 +665,49 @@ h1 .accent {
   filter: brightness(1.18);
 }
 
+.hero-nav-buttons a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
+}
+
 .hero-nav-linkedin {
   color: #4da3ff;
+
+  --hero-nav-row-color: #4da3ff;
 }
 
 .hero-nav-resume {
   color: #ff5d5d;
+
+  --hero-nav-row-color: #ff5d5d;
 }
 
 .hero-nav-projects {
-  color: #b86cff;
+  color: var(--accent);
+
+  --hero-nav-row-color: var(--accent);
+}
+
+.hero-nav-arrow {
+  color: var(--text);
+  opacity: .62;
+
+  transition:
+    color .16s ease,
+    opacity .16s ease,
+    transform .16s ease;
+}
+
+.hero-nav-buttons a:hover .hero-nav-arrow,
+.hero-nav-buttons a:focus-visible .hero-nav-arrow {
+  color: var(--hero-nav-row-color);
+  opacity: 1;
+  transform: translate(3px, -3px);
+}
+
+.hero-nav-buttons a:hover .css-arrow-down,
+.hero-nav-buttons a:focus-visible .css-arrow-down {
+  transform: translateY(3px);
 }
 
 
