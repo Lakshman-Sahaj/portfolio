@@ -5,8 +5,8 @@
   --line: #282d2b;
   --accent: #b86cff;
   --max: 1460px;
-  --intro-scene-height: clamp(650px, 86vh, 940px);
-  --bio-scene-height: clamp(650px, 82vh, 900px);
+  --intro-scene-height: clamp(650px, 86vh, 1400px);
+  --bio-scene-height: clamp(650px, 82vh, 1320px);
   --intro-scene-top: clamp(140px, 16vh, 190px);
   --intro-scene-bottom: clamp(150px, 18vh, 200px);
   --projects-scene-top: clamp(110px, 14vh, 160px);
