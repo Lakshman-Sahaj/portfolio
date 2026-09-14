@@ -5,9 +5,11 @@
   --line: #282d2b;
   --accent: #b86cff;
   --max: 1460px;
-  --space-hero-top: clamp(180px, 19vh, 240px);
-  --space-name-to-bio: clamp(96px, 12vh, 150px);
-  --space-bio-to-projects: clamp(110px, 14vh, 170px);
+  --intro-scene-height: clamp(650px, 86vh, 940px);
+  --bio-scene-height: clamp(650px, 82vh, 900px);
+  --intro-scene-top: clamp(140px, 16vh, 190px);
+  --intro-scene-bottom: clamp(150px, 18vh, 200px);
+  --projects-scene-top: clamp(110px, 14vh, 160px);
 }
 
 :root[data-theme="lime"] {
@@ -573,6 +575,8 @@ main {
 .hero {
   position: relative;
 
+  min-height: var(--intro-scene-height);
+
   display: grid;
 
   grid-template-columns:
@@ -583,7 +587,10 @@ main {
 
   align-items: center;
 
-  padding: var(--space-hero-top) 0 0;
+  padding:
+    var(--intro-scene-top)
+    0
+    var(--intro-scene-bottom);
 }
 
 h1 {
@@ -754,6 +761,10 @@ h1 .accent {
   padding: 62px 0;
 }
 
+.projects {
+  padding-top: var(--projects-scene-top);
+}
+
 .section-label {
   padding-bottom: 12px;
 
@@ -775,10 +786,13 @@ h1 .accent {
 }
 
 .bio {
-  padding:
-    var(--space-name-to-bio)
-    0
-    calc(var(--space-bio-to-projects) - 62px);
+  min-height: var(--bio-scene-height);
+
+  padding: 0;
+
+  display: flex;
+
+  align-items: center;
 }
 
 .bio .section-label {
@@ -2847,9 +2861,11 @@ body.cursor-mode-rocket.cursor-active .rocket-cursor {
 @media (max-width: 900px) {
 
   :root {
-    --space-hero-top: clamp(84px, 12vh, 110px);
-    --space-name-to-bio: clamp(72px, 9vh, 92px);
-    --space-bio-to-projects: clamp(84px, 11vh, 112px);
+    --intro-scene-height: clamp(620px, 82vh, 760px);
+    --bio-scene-height: clamp(620px, 78vh, 760px);
+    --intro-scene-top: clamp(90px, 12vh, 112px);
+    --intro-scene-bottom: clamp(64px, 9vh, 86px);
+    --projects-scene-top: clamp(76px, 10vh, 96px);
   }
 
   .topbar,
@@ -2919,7 +2935,10 @@ body.cursor-mode-rocket.cursor-active .rocket-cursor {
 
 
   .hero {
-    padding: var(--space-hero-top) 0 0;
+    padding:
+      var(--intro-scene-top)
+      0
+      var(--intro-scene-bottom);
 
     grid-template-columns: 1fr;
   }
@@ -2943,15 +2962,15 @@ body.cursor-mode-rocket.cursor-active .rocket-cursor {
 
 
   .projects {
-    padding: 60px 0;
+    padding:
+      var(--projects-scene-top)
+      0
+      60px;
   }
 
 
   .bio {
-    padding:
-      var(--space-name-to-bio)
-      0
-      calc(var(--space-bio-to-projects) - 60px);
+    padding: clamp(72px, 9vh, 92px) 0;
   }
 
 
